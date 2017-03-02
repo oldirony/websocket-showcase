@@ -27,5 +27,9 @@ module.exports = {
 	},
 	plugins : [
 		new ExtractTextPlugin('./dist/style.css')
-	]
+	],
+	devServer: {
+		historyApiFallback: true,
+		contentBase: './'
+	}
 };

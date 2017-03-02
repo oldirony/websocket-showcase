@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { Router, browserHistory } from 'react-router';
+import routes from './routes';
 
-
-class App extends Component {
-	render() {
-		return <div className="c-app">test</div>
-	}
-}
-
-
-ReactDOM.render(<App />, document.querySelector('.content'));
+ReactDOM.render(
+	<Router routes={routes} history={browserHistory}/>,
+	document.querySelector('.content')
+);
