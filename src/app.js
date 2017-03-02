@@ -4,11 +4,9 @@ import ReactDOM from 'react-dom';
 
 class App extends Component {
 	render() {
-		return <div>test</div>
+		return <div className="c-app">test</div>
 	}
 }
-
-
 
 
 ReactDOM.render(<App />, document.querySelector('.content'));
