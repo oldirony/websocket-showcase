@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Prop } from 'react';
 import { connect } from 'react-redux';
 import { fetchProjects } from '../actions';
 import ControllerCard from './controller-card';
@@ -9,12 +9,13 @@ class ControllerNavigation extends Component {
 	}
 
 	render() {
-
 		const projectsList = (this.props.projects || []).map((project, index) => {
 			return <ControllerCard key={index} project={project} />
 		});
 		return <div className="c-controller-navigation">
 			{projectsList}
+
+			{this.props.children}
 		</div>
 	}
 }

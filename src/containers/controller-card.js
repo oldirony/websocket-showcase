@@ -2,8 +2,20 @@ import React, { Component } from 'react';
 import socket from '../lib/socket';
 import events from '../lib/events';
 
+import { connect } from 'react-redux';
+
+import { routerShape } from 'react-router';
+import { routes } from '../routes';
+
+import { selectProject } from '../actions';
+
 
 class ControllerCard extends Component {
+
+	static contextTypes = {
+		router : routerShape
+	};
+
 	constructor(){
 		super();
 
@@ -57,7 +69,10 @@ class ControllerCard extends Component {
 	translateUp(event){
 		event.persist();
 		if(Math.abs(this.draggedDistance) >= window.innerHeight) {
-			return socket.emit(events.selectProject, this.props.project);
+			socket.emit(events.selectProject, this.props.project);
+			this.props.selectProject(this.props.project);
+			this.context.router.push(routes.controller + routes.controllerCurrentProject);
+			return;
 		}
 
 		this.draggedDistance = this.draggedDistance - 10;
@@ -91,4 +106,4 @@ class ControllerCard extends Component {
 
 }
 
-export default ControllerCard;
+export default connect(null, { selectProject })(ControllerCard);

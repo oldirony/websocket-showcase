@@ -1,0 +1,25 @@
+.c-controller-project {
+	padding: 1rem;
+
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background: #666;
+	animation: expandIn .3s;
+	animation-fill-mode: forwards;
+	animation-delay: .3s;
+	opacity: 0;
+	color: #fff;
+}
+
+@keyframes expandIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: .95;
+	}
+}
