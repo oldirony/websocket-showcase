@@ -5,8 +5,13 @@ import socket from '../lib/socket';
 import events from '../lib/events';
 
 
+import ShowcaseProject from '../components/showcase-project';
+
+
 class ShowcaseLanding extends Component {
 	componentWillMount() {
+		this.props.selectProject(null);
+
 		socket.on(events.connect, function(data) {
 			socket.emit('join', 'Showcase connected');
 		});
@@ -17,18 +22,13 @@ class ShowcaseLanding extends Component {
 	}
 
 	renderCurrentProject(){
-		if(!this.props.currentProject) return <div>no project specified</div>;
+		if(!this.props.currentProject) return <div>Waiting for a project...</div>;
 
-		return <div>
-			<h1>{this.props.currentProject.title}</h1>
-			<p>{this.props.currentProject.description}</p>
-		</div>
+		return <ShowcaseProject {...this.props.currentProject} />;
 	}
 
 	render() {
 		return <div className="c-showcase-landing">
-			<h1>Showcase landing</h1>
-
 			{this.renderCurrentProject()}
 		</div>
 	}

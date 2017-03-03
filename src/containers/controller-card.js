@@ -26,7 +26,7 @@ class ControllerCard extends Component {
 					style={this.state.style}
 		>
 			<h3 className="c-controller-card__title">{this.props.project.title}</h3>
-			<div className="c-controller-card__description">{this.props.project.description}</div>
+			<p className="c-controller-card__description">{this.props.project.description}</p>
 		</div>
 	}
 

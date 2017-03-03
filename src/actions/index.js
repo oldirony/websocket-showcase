@@ -27,5 +27,15 @@ export function selectProject(data){
 	return {
 		type: SELECT_PROJECT,
 		payload : data
-	}
+	};
+
+
+	// return {
+	// 	type: SELECT_PROJECT,
+	// 	payload : {
+	// 		title:'project1',
+	// 		id: 1,
+	// 		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer bibendum cursus neque. Curabitur maximus orci a tortor sagittis, in ornare erat interdum. In dolor tellus, venenatis.'
+	// 	}
+	// }
 }

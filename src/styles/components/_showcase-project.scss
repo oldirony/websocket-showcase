@@ -1,0 +1,25 @@
+.c-showcase-project {
+	padding: 3rem;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #666;
+	color: #fff;
+	border-top: .8rem solid #999;
+
+	animation: slidein .5s;
+	animation-fill-mode: forwards;
+
+}
+
+@keyframes slidein {
+	from {
+		transform: translateY(100%) scale(0.8);
+	}
+
+	to {
+		transform: translateY(0) scale(1);
+	}
+}
