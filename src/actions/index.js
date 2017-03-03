@@ -15,7 +15,7 @@ const projects = [{
 	description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer bibendum cursus neque. Curabitur maximus orci a tortor sagittis, in ornare erat interdum. In dolor tellus, venenatis.'
 }];
 
-export function fetchProjects(state = {}){
+export function fetchProjects(){
 	return {
 		type: FETCH_PROJECTS,
 		payload : projects
@@ -23,10 +23,9 @@ export function fetchProjects(state = {}){
 }
 
 
-export function selectProject(state = {}, data){
-	console.log(data);
+export function selectProject(data){
 	return {
 		type: SELECT_PROJECT,
-		payload : {...projects[0]}
+		payload : data
 	}
 }

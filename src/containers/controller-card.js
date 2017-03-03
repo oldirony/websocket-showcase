@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import io from 'socket.io-client';
+import socket from '../lib/socket';
+import events from '../lib/events';
 
-const socket = io.connect('http://192.168.10.109:8080');
 
 class ControllerCard extends Component {
 	constructor(){
@@ -13,8 +13,8 @@ class ControllerCard extends Component {
 	}
 
 	componentWillMount(){
-		socket.on('connect', (data) => {
-			socket.emit('join', this.props.projects);
+		socket.on(events.connect, (data) => {
+			socket.emit(events.join, 'card connected');
 		});
 	}
 
@@ -57,8 +57,8 @@ class ControllerCard extends Component {
 	translateUp(event){
 		event.persist();
 		if(Math.abs(this.draggedDistance) >= window.innerHeight) {
-			return socket.emit('selectProject', 'asdasd');
-		};
+			return socket.emit(events.selectProject, this.props.project);
+		}
 
 		this.draggedDistance = this.draggedDistance - 10;
 		this.move(this.draggedDistance);

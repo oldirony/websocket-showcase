@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchProjects, selectProject } from '../actions';
-import io from 'socket.io-client';
+import { selectProject } from '../actions';
+import socket from '../lib/socket';
+import events from '../lib/events';
 
-const socket = io.connect('http://192.168.10.109:8080');
 
 class ShowcaseLanding extends Component {
 	componentWillMount() {
-		var self = this;
-
-		socket.on('connect', function(data) {
-			socket.emit('join', 'Hello World from client 2');
+		socket.on(events.connect, function(data) {
+			socket.emit('join', 'Showcase connected');
 		});
 
-		socket.on('selectProjectClient', function(data) {
-			console.log('gned');
-			self.props.selectProject();
+		socket.on(events.selectProjectClient, (data) => {
+			this.props.selectProject(data);
 		});
 	}
 
@@ -24,6 +21,7 @@ class ShowcaseLanding extends Component {
 
 		return <div>
 			<h1>{this.props.currentProject.title}</h1>
+			<p>{this.props.currentProject.description}</p>
 		</div>
 	}
 
@@ -39,7 +37,6 @@ class ShowcaseLanding extends Component {
 function mapStateToProps(state){
 	return {
 		currentProject : state.projects.current,
-		projects : state.projects.all
 	}
 }
 
