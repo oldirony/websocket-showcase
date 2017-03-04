@@ -71,30 +71,30 @@ class ControllerCard extends Component {
 		}
 	}
 
-	translateUp(event){
+	translateUp(event, i = 1){
 		event.persist();
 		if(Math.abs(this.draggedDistance) >= window.innerHeight) {
-			socket.emit(events.selectProject, this.props.project);
-			this.props.selectProject(this.props.project);
-			this.context.router.push(routes.controller + routes.controllerCurrentProject);
-			return;
+			return this.openProject();
 		}
+		this.draggedDistance = this.draggedDistance - (10 + i > 1 ? 10 + i : 1);
+		i++;
 
-		this.draggedDistance = this.draggedDistance - 10;
 		this.move(this.draggedDistance);
 
-		window.requestAnimationFrame(this.translateUp.bind(this, event))
+		window.requestAnimationFrame(this.translateUp.bind(this, event, i))
 
 	}
 
-	translateDown(event){
+	translateDown(event, i = 1){
 		event ? event.persist() : null;
 		if(Math.abs(this.draggedDistance) <= 0) return;
 
-		this.draggedDistance = this.draggedDistance + 10 < 0 ? this.draggedDistance + 10 : 0 ;
+		this.draggedDistance = (this.draggedDistance + i) < 0 ? this.draggedDistance + i : 0 ;
+		i++;
+
 		this.move(this.draggedDistance);
 
-		window.requestAnimationFrame(this.translateDown.bind(this, event))
+		window.requestAnimationFrame(this.translateDown.bind(this, event, i))
 
 	}
 
@@ -102,6 +102,12 @@ class ControllerCard extends Component {
 		this.setState({style : {
 			transform: `translateY(${newPosition}px)`
 		}});
+	}
+
+	openProject(){
+		socket.emit(events.selectProject, this.props.project);
+		this.props.selectProject(this.props.project);
+		this.context.router.push(routes.controller + routes.controllerCurrentProject);
 	}
 
 	static hasGotScrollThreshold(draggedDistance, event){
