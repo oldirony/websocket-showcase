@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { selectProject } from '../actions';
+import { selectProject, closeProject } from '../actions';
 import socket from '../lib/socket';
 import events from '../lib/events';
 
@@ -18,6 +18,10 @@ class ShowcaseLanding extends Component {
 
 		socket.on(events.selectProjectClient, (data) => {
 			this.props.selectProject(data);
+		});
+
+		socket.on(events.closeProjectClient, (data) => {
+			this.props.closeProject();
 		});
 	}
 
@@ -40,4 +44,4 @@ function mapStateToProps(state){
 	}
 }
 
-export default connect(mapStateToProps, {selectProject})(ShowcaseLanding);
+export default connect(mapStateToProps, { selectProject, closeProject })(ShowcaseLanding);

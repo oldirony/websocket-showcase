@@ -1,5 +1,6 @@
 export const FETCH_PROJECTS = 'FETCH_PROJECTS';
 export const SELECT_PROJECT = 'SELECT_PROJECTS';
+export const CLOSE_PROJECT = 'CLOSE_PROJECTS';
 
 const projects = [{
 	title:'project1',
@@ -38,4 +39,11 @@ export function selectProject(data){
 	// 		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer bibendum cursus neque. Curabitur maximus orci a tortor sagittis, in ornare erat interdum. In dolor tellus, venenatis.'
 	// 	}
 	// }
+}
+
+export function closeProject(data) {
+	return {
+		type: CLOSE_PROJECT,
+		payload: data
+	};
 }

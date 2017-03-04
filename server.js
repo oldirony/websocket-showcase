@@ -25,6 +25,10 @@ io.on(events.connection, function(client) {
 		client.broadcast.emit(events.selectProjectClient, data);
 	});
 
+	client.on(events.closeProject, function(data) {
+		client.emit(events.closeProjectClient, data);
+		client.broadcast.emit(events.closeProjectClient, data);
+	});
 });
 
 server.listen(8080);

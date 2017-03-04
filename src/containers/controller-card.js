@@ -28,6 +28,11 @@ class ControllerCard extends Component {
 		socket.on(events.connect, (data) => {
 			socket.emit(events.join, 'card connected');
 		});
+
+
+		socket.on(events.closeProjectClient, (data) => {
+			this.translateDown();
+		});
 	}
 
 	render() {
@@ -83,10 +88,10 @@ class ControllerCard extends Component {
 	}
 
 	translateDown(event){
-		event.persist();
+		event ? event.persist() : null;
 		if(Math.abs(this.draggedDistance) <= 0) return;
 
-		this.draggedDistance = this.draggedDistance + 3 < 0 ? this.draggedDistance + 3 : 0 ;
+		this.draggedDistance = this.draggedDistance + 10 < 0 ? this.draggedDistance + 10 : 0 ;
 		this.move(this.draggedDistance);
 
 		window.requestAnimationFrame(this.translateDown.bind(this, event))

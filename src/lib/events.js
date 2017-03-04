@@ -3,5 +3,7 @@ module.exports = {
 	connection : 'connection',
 	join : 'join',
 	selectProject : 'selectProject',
-	selectProjectClient : 'selectProjectClient'
+	selectProjectClient : 'selectProjectClient',
+	closeProject : 'closeProject',
+	closeProjectClient : 'closeProjectClient'
 };
