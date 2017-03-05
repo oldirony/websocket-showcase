@@ -21,7 +21,9 @@ class ShowcaseLanding extends Component {
 		});
 
 		socket.on(events.closeProjectClient, (data) => {
-			this.props.closeProject();
+			setTimeout(()=>{
+				this.props.closeProject();
+			}, 500)
 		});
 	}
 

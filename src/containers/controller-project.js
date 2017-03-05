@@ -21,8 +21,7 @@ class ControllerProject extends Component {
 
 		return <div className="c-controller-project">
 			<h1>{this.props.currentProject.title}</h1>
-			<p>{this.props.currentProject.description}</p>
-			<button className="c-button" onClick={this.handleCloseClick.bind(this)}>Close project</button>
+			<button className="c-button-icon" onClick={this.handleCloseClick.bind(this)}><svg className="o-icon"><use xlinkHref="#icon-close"/></svg></button>
 		</div>
 	}
 
