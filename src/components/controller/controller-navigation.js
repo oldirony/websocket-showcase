@@ -1,6 +1,6 @@
 import React, { Component, Prop } from 'react';
 import { connect } from 'react-redux';
-import { fetchProjects } from '../actions';
+import { fetchProjects } from '../../actions';
 import ControllerCard from './controller-card';
 
 class ControllerNavigation extends Component {

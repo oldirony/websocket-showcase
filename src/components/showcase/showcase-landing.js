@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { selectProject, closeProject } from '../actions';
-import socket from '../lib/socket';
-import events from '../lib/events';
+import { selectProject, closeProject } from '../../actions';
+import socket from '../../lib/socket';
+import events from '../../lib/events';
 
 
-import ShowcaseProject from '../components/showcase-project';
+import ShowcaseProject from './showcase-project';
 
 
 class ShowcaseLanding extends Component {

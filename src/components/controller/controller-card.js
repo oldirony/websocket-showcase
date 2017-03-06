@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import socket from '../lib/socket';
-import events from '../lib/events';
+import socket from '../../lib/socket';
+import events from '../../lib/events';
 
 import { connect } from 'react-redux';
 
 import { routerShape } from 'react-router';
-import { routes } from '../routes';
+import { routes } from '../../routes';
 
-import { selectProject } from '../actions';
+import { selectProject } from '../../actions';
 
 
 class ControllerCard extends Component {

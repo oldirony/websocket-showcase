@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import socket from '../lib/socket';
-import events from '../lib/events';
+import socket from '../../lib/socket';
+import events from '../../lib/events';
 
 class ShowcaseProject extends Component {
 	constructor() {

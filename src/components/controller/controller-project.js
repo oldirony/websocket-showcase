@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import socket from '../lib/socket';
-import events from '../lib/events';
-import { routes } from '../routes';
+import socket from '../../lib/socket';
+import events from '../../lib/events';
+import { routes } from '../../routes';
 import { routerShape } from 'react-router';
 
 class ControllerProject extends Component {
