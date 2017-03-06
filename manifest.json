@@ -1,0 +1,7 @@
+{
+	"short_name": "FP Showcase",
+	"name": "Foolproof Showcase",
+	"start_url": "/controller",
+	"display": "standalone",
+	"orientation": "landscape"
+}

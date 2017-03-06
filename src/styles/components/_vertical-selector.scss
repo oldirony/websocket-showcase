@@ -1,0 +1,22 @@
+.c-vertical-selector {
+	//transform: translateY(calc(50% - 1rem));
+	max-width:30%;
+
+	&__inner {
+	}
+
+	&__option {
+		padding:.5rem 0;
+		transition: opacity .2s;
+		float: none !important;
+		opacity: .6;
+
+		&.slick-active {
+			opacity: 1;
+		}
+	}
+
+	.slick-list {
+		overflow: visible;
+	}
+}

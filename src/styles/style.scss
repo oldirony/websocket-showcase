@@ -2,11 +2,13 @@
 @import "generic/variables";
 @import "generic/typography";
 
+@import "../../node_modules/slick-carousel/slick/slick";
+@import "../../node_modules/slick-carousel/slick/slick-theme";
+
 @import "utilities/utilities";
 
 @import "components/app";
-@import "components/header";
-@import "components/footer";
+
 @import "components/controller-navigation";
 @import "components/controller-card";
 @import "components/controller-project";
@@ -15,7 +17,10 @@
 @import "components/showcase-project";
 
 @import "components/buttons";
+@import "components/vertical-selector";
 
 @import "objects/icons";
 @import "objects/controller-project";
 @import "objects/controller-side-nav";
+
+

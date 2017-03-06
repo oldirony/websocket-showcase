@@ -54,7 +54,6 @@ class ControllerCard extends Component {
 
 	handleDrag(event){
 		if(this.isDragging) {
-			console.log(event.nativeEvent.touches[0].clientY);
 			this.draggedDistance = event.nativeEvent.touches[0].clientY - this.initialDrag;
 			this.draggedDistance = this.draggedDistance < 0 ? this.draggedDistance : 0;
 			this.move(this.draggedDistance)

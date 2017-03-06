@@ -22,6 +22,14 @@ module.exports = {
 				use: ExtractTextPlugin.extract({
 					use: ["css-loader", "sass-loader"]
 				})
+			},
+			{
+				test: /\.(eot|svg|ttf|woff|woff2)$/,
+				loader: 'file-loader?name=dist/fonts/[name].[ext]'
+			},
+			{
+				test: /\.(gif)$/,
+				loader: 'file-loader?name=dist/[name].[ext]'
 			}
 		]
 	},
