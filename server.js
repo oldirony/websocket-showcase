@@ -22,6 +22,7 @@ io.on(events.connection, function(client) {
 	});
 
 	client.on(events.selectProject, function(data) {
+		console.log('opened?');
 		client.broadcast.emit(events.selectProjectClient, data);
 	});
 

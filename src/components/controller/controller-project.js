@@ -16,17 +16,19 @@ class ControllerProject extends Component {
 		}
 	}
 
+	renderMainView(){
+		return	<div options>main view</div>
+	}
+
 	render() {
 		if(!this.props.currentProject){ return <div></div>; }
 
 		return <div className="c-controller-project o-controller-project">
-			<div className="o-controller-project__main-content">
-				<header className="c-controller-project__header">
-					<h1>{this.props.currentProject.title}</h1>
-				</header>
-				<div className="c-controller-project__views">
-					{this.props.children}
-				</div>
+			<header className="c-controller-project__header">
+				<h1>{this.props.currentProject.title}</h1>
+			</header>
+			<div className="c-controller-project__views">
+				{this.props.children || this.renderMainView()}
 			</div>
 			<nav className="o-controller-side-nav o-controller-project__side-buttons">
 				<button className="c-button-icon o-controller-side-nav__button" onClick={this.handleCloseClick.bind(this)}><svg className="o-icon"><use xlinkHref="#icon-close"/></svg></button>

@@ -3,8 +3,12 @@
 	justify-content: space-between;
 	align-items:center;
 
-	&__main-content {
+	&__header {
+		flex: 1 1 50%;
+	}
 
+	&__views {
+		flex: 1 1 50%;
 	}
 
 	&__side-buttons {

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import Layout from './components/layout';
-import Home from './components/home';
 import ShowcaseLanding from './components/showcase/showcase-landing';
 import ControllerNavigation from './components/controller/controller-navigation';
 import ControllerProject from './components/controller/controller-project';

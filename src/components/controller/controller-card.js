@@ -9,7 +9,6 @@ import { routes } from '../../routes';
 
 import { selectProject } from '../../actions';
 
-
 class ControllerCard extends Component {
 
 	static contextTypes = {
