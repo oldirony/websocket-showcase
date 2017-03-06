@@ -5,14 +5,14 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background: #666;
-	color: #fff;
-	border-top: .8rem solid #999;
+	background: #fff;
+	color: #333;
+	border-top: .8rem solid $dark-green;
 
-	animation: slidein .5s forwards ease-out;
+	animation: slidein .3s forwards ease-out;
 
 	&--is-closing {
-		animation: slideout .5s forwards ease-out;
+		animation: slideout .3s forwards ease-out;
 	}
 
 }

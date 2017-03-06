@@ -6,7 +6,7 @@
 	bottom: 0;
 	right: 0;
 	left: 0;
-	background: #666;
+	background: rgba($dark-green, .96);
 	animation: expandIn .3s;
 	animation-fill-mode: forwards;
 	animation-delay: .3s;
@@ -20,6 +20,6 @@
 	}
 
 	to {
-		opacity: .95;
+		opacity: 1;
 	}
 }

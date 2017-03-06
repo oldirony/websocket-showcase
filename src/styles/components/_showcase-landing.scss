@@ -2,6 +2,8 @@
 	position: relative;
 	padding: 3rem;
 
-	background: #eee;
+	background: $green url("/assets/fp-logo.svg") center center no-repeat;
+	background-size: 15rem;
 	min-height: 100vh;
+	color: #fff;
 }

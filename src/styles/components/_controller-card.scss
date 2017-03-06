@@ -1,11 +1,12 @@
 .c-controller-card {
-	background: #666;
+	background: white;
 	margin:0 .3rem;
-	color: #fff;
-	border-top: .4rem solid #999;
+	//color: #fff;
+	border-top: .6rem solid $dark-green;
+	border-radius: 3px;
 
 	&__title {
-		padding: 2rem 1rem 1rem;
+		padding: 1.5rem 1rem 1rem;
 		margin-top: 0;
 		margin-bottom: 0;
 		font-size: 1.2rem;
