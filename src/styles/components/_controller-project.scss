@@ -6,12 +6,17 @@
 	bottom: 0;
 	right: 0;
 	left: 0;
-	background: rgba($dark-green, .96);
+	background: $green;
 	animation: expandIn .3s;
 	animation-fill-mode: forwards;
 	animation-delay: .3s;
 	opacity: 0;
 	color: #fff;
+
+	&__header {
+		border-bottom: 1px solid currentColor;
+		padding-right: 2rem;
+	}
 }
 
 @keyframes expandIn {

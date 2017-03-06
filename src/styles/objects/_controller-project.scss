@@ -1,0 +1,13 @@
+.o-controller-project {
+	display: flex;
+	justify-content: space-between;
+	align-items:center;
+
+	&__main-content {
+
+	}
+
+	&__side-buttons {
+		align-self: flex-start;
+	}
+}

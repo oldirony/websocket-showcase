@@ -1,0 +1,9 @@
+.o-controller-side-nav {
+	&__button {
+		display: block;
+
+		& + & {
+			margin-top: .5rem;
+		}
+	}
+}
