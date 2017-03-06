@@ -15,6 +15,29 @@
 		animation: slideout .3s forwards ease-out;
 	}
 
+	&__header {
+
+	}
+
+	&__title {
+		font-size: 3rem;
+		margin-bottom: 1em;
+	}
+
+	&__content {
+		display: flex;
+		align-items: center;
+	}
+
+	&__description {
+		flex: 0 1 calc(40% - 1rem);
+		color: #666;
+		line-height: 1.5;
+	}
+	&__cover {
+		flex: 0 1 calc(60% - 1rem);
+		margin-left: auto;
+	}
 }
 
 @keyframes slidein {

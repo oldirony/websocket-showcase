@@ -2,11 +2,12 @@
 	background: white;
 	margin:0 .3rem;
 	//color: #fff;
-	border-top: .6rem solid $dark-green;
+	border-top: 0px solid $dark-green;
 	border-radius: 3px;
+	overflow: hidden;
 
 	&__title {
-		padding: 1.5rem 1rem 1rem;
+		padding: 1rem 1rem 0rem;
 		margin-top: 0;
 		margin-bottom: 0;
 		font-size: 1.2rem;

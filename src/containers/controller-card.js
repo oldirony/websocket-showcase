@@ -42,8 +42,9 @@ class ControllerCard extends Component {
 					onTouchEnd={this.handleDragEnd.bind(this)}
 					style={this.state.style}
 		>
+			<img src={this.props.project.coverImg} alt={this.props.project.title}/>
 			<h3 className="c-controller-card__title">{this.props.project.title}</h3>
-			<p className="c-controller-card__description">{this.props.project.description}</p>
+			<p className="c-controller-card__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 		</div>
 	}
 
