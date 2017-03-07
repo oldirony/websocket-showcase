@@ -4,4 +4,9 @@
 	background-size: 15rem;
 	min-height: 100vh;
 	color: #fff;
+
+	&__waiting-message {
+		padding: 3rem;
+		font-size: 1.4rem;
+	}
 }

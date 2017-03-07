@@ -28,7 +28,7 @@ class ShowcaseLanding extends Component {
 	}
 
 	renderCurrentProject(){
-		if(!this.props.currentProject) return <div>Waiting for a project...</div>;
+		if(!this.props.currentProject) return <div className="c-showcase-landing__waiting-message">Waiting for a project...</div>;
 
 		return <ShowcaseProject {...this.props.currentProject} />;
 	}
