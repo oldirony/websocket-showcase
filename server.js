@@ -32,6 +32,16 @@ io.on(events.connection, function(client) {
 
 	client.on(events.changeSection, function(data) {
 		client.broadcast.emit(events.changeSectionClient, data)
+	});
+
+	client.on(events.loading, function(data) {
+		console.log(data);
+		client.emit(events.loadingClient, data)
+	});
+
+	client.on(events.loadingComplete, function(data) {
+		console.log(data);
+		client.emit(events.loadingCompleteClient, data)
 	})
 });
 

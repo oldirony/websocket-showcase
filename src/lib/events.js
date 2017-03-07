@@ -7,5 +7,9 @@ module.exports = {
 	closeProject : 'CLOSE_PROJECT',
 	closeProjectClient : 'CLOSE_PROJECT_CLIENT',
 	changeSection : 'CHANGE_SECTION',
-	changeSectionClient : 'CHANGE_SECTION_CLIENT'
+	changeSectionClient : 'CHANGE_SECTION_CLIENT',
+	loading : 'LOADING',
+	loadingClient : 'LOADING_CLIENT',
+	loadingComplete : 'LOADING_COMPLETE',
+	loadingCompleteClient : 'LOADING_COMPLETE_CLIENT'
 };

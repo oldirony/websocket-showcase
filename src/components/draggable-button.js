@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {easing} from '../lib/positioning';
 
+import socket from '../lib/socket';
+import events from '../lib/events';
+
 class DraggableButton extends Component {
 	constructor() {
 		super();
@@ -46,7 +49,7 @@ class DraggableButton extends Component {
 	}
 
 
-	handleDragEnd(event) {
+	handleDragEnd() {
 		this.isDragging = false;
 
 		if(!this.draggedDistance.x && !this.draggedDistance.y) {
@@ -56,13 +59,27 @@ class DraggableButton extends Component {
 		}
 
 		if (this.isNearDropZone()){
-			this.translateTo({x: this.draggedDistance.x*2, y: - window.innerHeight}, 500, this.props.action);
+			this.translateTo({x: this.draggedDistance.x*2, y: - window.innerHeight}, 500, this.preAction.bind(this));
 
 		} else {
 			this.translateTo({x:0, y:0}, 300);
 		}
 
 		this.setState({isActive : false});
+	}
+
+
+	preAction(){
+		const id = Math.random();
+
+		socket.emit(events.loading, {id});
+
+		socket.on(events.loadingCompleteClient, (data)=>{
+			if(data.id === id) {
+				this.props.action();
+				socket.off(events.loading);
+			}
+		});
 	}
 
 	move({x, y}){
@@ -88,7 +105,7 @@ class DraggableButton extends Component {
 
 		if(timeDiff >= duration) {
 			this.draggedDistance.y = this.draggedDistance.x = 0;
-			return callback ? callback() : null;
+			return callback ? callback.call(this) : null;
 		}
 
 		window.requestAnimationFrame(this.translateTo.bind(this, {x, y}, duration, callback, initialTime))
