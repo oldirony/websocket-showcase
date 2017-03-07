@@ -21,8 +21,6 @@ class DraggableButton extends Component {
 	}
 
 	handleDragStart(event){
-		event.preventDefault();
-
 		this.isDragging = true;
 		this.draggedDistance = this.draggedDistance || {x:0,y:0};
 		this.previousTranslation = {...this.draggedDistance};
@@ -34,8 +32,6 @@ class DraggableButton extends Component {
 	}
 
 	handleDrag(event){
-		event.preventDefault();
-
 		if(this.isDragging) {
 
 			this.draggedDistance = {
