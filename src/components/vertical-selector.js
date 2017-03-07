@@ -16,7 +16,7 @@ class VerticalSelector extends Component {
 			slidesToScroll: 1,
 			edgeFriction: 1,
 			focusOnSelect: true,
-			afterChange: this.props.handleSlideChange
+			beforeChange: this.props.handleSlideChange
 		};
 	}
 

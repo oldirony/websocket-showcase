@@ -25,27 +25,28 @@ class ShowcaseProject extends Component {
 
 			const target = this.projectElem.querySelector('.c-showcase-project__content.is-active');
 
-			console.log(calculateScrollPosTop(target));
-
 			scroll(target.offsetTop, 500, this.scrollElem);
-			// this.scrollElem.scrollTop = target.offsetTop;//calculateScrollPosTop(target);
 		});
 	}
 
-	componentDidMount(){
+	componentWillUnmount(){
+		socket.off(events.changeSectionClient);
 	}
 
 	renderExtraSections(){
+		const description = (description) => <div className="c-showcase-project__description">{description}</div>;
+
 		return this.props.contents.map((section, index) => {
 			return <div key={index}
 						className={'c-showcase-project__content o-section--full-height'
 							+ (index % 2 ? '' : ' c-showcase-project__content--alt-bg')
 							+ (this.state.selectedSection === index+1 ? ' is-active' : '')
 						}>
-				<div className="c-showcase-project__description">{section.description}</div>
+				{ index % 2 ? description(section.description) : ''}
 				<div className="c-showcase-project__cover">
 					<img src={section.coverImg} alt={section.title}/>
 				</div>
+				{ index % 2 ? '' : description(section.description)}
 			</div>
 		})
 	}
