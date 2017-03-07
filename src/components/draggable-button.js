@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {easing} from '../lib/positioning';
+import Loader from './loader';
 
 import socket from '../lib/socket';
 import events from '../lib/events';
@@ -70,16 +71,7 @@ class DraggableButton extends Component {
 
 
 	preAction(){
-		const id = Math.random();
-
-		socket.emit(events.loading, {id});
-
-		socket.on(events.loadingCompleteClient, (data)=>{
-			if(data.id === id) {
-				this.props.action();
-				socket.off(events.loading);
-			}
-		});
+		Loader.callLoader(this.props.action);
 	}
 
 	move({x, y}){

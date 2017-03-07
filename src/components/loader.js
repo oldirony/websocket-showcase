@@ -47,6 +47,18 @@ class Loader extends Component {
 			this.loaderElem.style.height = this.loaderElem.style.width = 0
 		})
 	}
+
+	static callLoader(callback, extraData = {}){
+		const id = Math.random();
+		socket.emit(events.loading, {id, ...extraData});
+
+		socket.on(events.loadingCompleteClient, (data)=>{
+			if(data.id === id) {
+				callback();
+				socket.off(events.loading);
+			}
+		});
+	}
 }
 
 export default Loader;
