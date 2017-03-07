@@ -10,14 +10,17 @@ const projects = [
 		coverImg : 'http://www.foolproof.co.uk/media/574310/Suzuki_process.jpg',
 		contents : [
 			{
+				title: 'The brief',
 				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer bibendum cursus neque. Curabitur maximus orci a tortor sagittis, in ornare erat interdum. In dolor tellus, venenatis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer bibendum cursus neque. Curabitur maximus orci a tortor sagittis, in ornare erat interdum. In dolor tellus, venenatis.',
 				coverImg : 'http://www.foolproof.co.uk/media/574310/Suzuki_process.jpg'
 			},
 			{
+				title: 'The launch',
 				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer bibendum cursus neque. Curabitur maximus orci a tortor sagittis, in ornare erat interdum. In dolor tellus, venenatis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer bibendum cursus neque. Curabitur maximus orci a tortor sagittis, in ornare erat interdum. In dolor tellus, venenatis.',
 				coverImg : 'http://www.foolproof.co.uk/media/574310/Suzuki_process.jpg'
 			},
 			{
+				title: 'Results',
 				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer bibendum cursus neque. Curabitur maximus orci a tortor sagittis, in ornare erat interdum. In dolor tellus, venenatis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer bibendum cursus neque. Curabitur maximus orci a tortor sagittis, in ornare erat interdum. In dolor tellus, venenatis.',
 				coverImg : 'http://www.foolproof.co.uk/media/574310/Suzuki_process.jpg'
 			}

@@ -8,7 +8,7 @@ class VerticalSelector extends Component {
 			dots: false,
 			infinite: false,
 			arrows: false,
-			speed: 500,
+			speed: 200,
 			slidesToShow: 1,
 			vertical: true,
 			centerMode: true,
@@ -16,9 +16,10 @@ class VerticalSelector extends Component {
 			slidesToScroll: 1,
 			edgeFriction: 1,
 			focusOnSelect: true,
-			beforeChange: this.props.handleSlideChange
+			afterChange: this.props.handleSlideChange
 		};
 	}
+
 
 	renderOptions() {
 		return this.props.options.map((option, index) => {

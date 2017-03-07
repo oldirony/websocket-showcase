@@ -22,11 +22,12 @@ class ShowcaseProject extends Component {
 			this.setState({
 				selectedSection: sectionId
 			});
-
-			const target = this.projectElem.querySelector('.c-showcase-project__content.is-active');
-
-			scroll(target.offsetTop, 500, this.scrollElem);
 		});
+	}
+
+	componentDidUpdate() {
+		const target = this.projectElem.querySelector('.c-showcase-project__content.is-active');
+		scroll(target.offsetTop, 500, this.scrollElem);
 	}
 
 	componentWillUnmount(){
@@ -34,7 +35,10 @@ class ShowcaseProject extends Component {
 	}
 
 	renderExtraSections(){
-		const description = (description) => <div className="c-showcase-project__description">{description}</div>;
+		const description = (section) => <div className="c-showcase-project__description">
+			<h3>{section.title}</h3>
+			<p>{section.description}</p>
+		</div>;
 
 		return this.props.contents.map((section, index) => {
 			return <div key={index}
@@ -42,11 +46,11 @@ class ShowcaseProject extends Component {
 							+ (index % 2 ? '' : ' c-showcase-project__content--alt-bg')
 							+ (this.state.selectedSection === index+1 ? ' is-active' : '')
 						}>
-				{ index % 2 ? description(section.description) : ''}
+				{ index % 2 ? description(section) : ''}
 				<div className="c-showcase-project__cover">
 					<img src={section.coverImg} alt={section.title}/>
 				</div>
-				{ index % 2 ? '' : description(section.description)}
+				{ index % 2 ? '' : description(section)}
 			</div>
 		})
 	}

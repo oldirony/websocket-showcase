@@ -19,7 +19,8 @@ class ControllerProject extends Component {
 	}
 
 	renderMainView(){
-		return	<VerticalSelector handleSlideChange={this.handleSlideChange} options={['Intro','Brief','Launch', 'Results']} />
+		const options = ['Intro'].concat(this.props.currentProject.contents.map(content => content.title));
+		return	<VerticalSelector handleSlideChange={this.handleSlideChange} options={options} />
 	}
 
 	render() {
