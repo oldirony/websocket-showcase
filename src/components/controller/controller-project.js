@@ -6,6 +6,7 @@ import { routes } from '../../routes';
 import { routerShape } from 'react-router';
 
 import VerticalSelector from '../vertical-selector';
+import DraggableButton from '../draggable-button';
 
 class ControllerProject extends Component {
 	static contextTypes = {
@@ -35,9 +36,9 @@ class ControllerProject extends Component {
 				{this.props.children || this.renderMainView()}
 			</div>
 			<nav className="o-controller-side-nav o-controller-project__side-buttons">
-				<button className="c-button-icon o-controller-side-nav__button" onClick={this.handleCloseClick.bind(this)}><svg className="o-icon"><use xlinkHref="#icon-close"/></svg></button>
-				<button className="c-button-icon o-controller-side-nav__button" onClick={this.handleCloseClick.bind(this)}><svg className="o-icon"><use xlinkHref="#icon-people"/></svg></button>
-				<button className="c-button-icon o-controller-side-nav__button" onClick={this.handleCloseClick.bind(this)}><svg className="o-icon"><use xlinkHref="#icon-timeline"/></svg></button>
+				<DraggableButton icon="#icon-close" action={this.handleCloseClick.bind(this)}/>
+				<DraggableButton icon="#icon-people"/>
+				<DraggableButton icon="#icon-timeline"/>
 			</nav>
 		</div>
 	}

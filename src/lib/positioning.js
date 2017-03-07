@@ -5,7 +5,7 @@ export function calculateScrollPosTop (el) {
 	return bbox.top;// + Math.round(bbox.height/2);// + window.pageYOffset - window.innerHeight;
 }
 
-function easing (t) {
+export function easing (t) {
 	return t*(2-t)
 }
 
