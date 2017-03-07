@@ -17,10 +17,9 @@ class Loader extends Component {
 	}
 
 	openCircle({id}) {
-		this.circle = this.svg.circle(0, 0, 0);
+		this.circle = this.svg.circle(window.innerWidth, 0, 0);
 		this.circle.attr({
 			fill: "#fff",
-			cx: window.innerWidth / 2
 		});
 		this.loaderElem.style.height = window.innerHeight;
 		this.loaderElem.style.width = window.innerWidth;
@@ -28,12 +27,12 @@ class Loader extends Component {
 
 		this.circle.animate(
 			{
-				r: window.innerWidth
+				r: window.innerWidth * 1.5
 			},
 			300,
 			() => {
 				socket.emit(events.loadingComplete, {id});
-				this.closeCircle();
+				setTimeout(()=>this.closeCircle(), 200)
 			}
 		)
 	}

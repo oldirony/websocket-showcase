@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { routerShape } from 'react-router';
+
 import socket from '../../lib/socket';
 import events from '../../lib/events';
-
-import { connect } from 'react-redux';
-
-import { routerShape } from 'react-router';
 import { routes } from '../../routes';
-
 import { selectProject } from '../../actions';
+
+import Loader from '../loader';
 
 class ControllerCard extends Component {
 
@@ -107,7 +107,10 @@ class ControllerCard extends Component {
 	openProject(){
 		socket.emit(events.selectProject, this.props.project);
 		this.props.selectProject(this.props.project);
-		this.context.router.push(routes.controller + routes.controllerCurrentProject);
+
+		Loader.callLoader(()=>{
+			this.context.router.push(routes.controller + routes.controllerCurrentProject);
+		});
 	}
 
 	static hasGotScrollThreshold(draggedDistance, event){
