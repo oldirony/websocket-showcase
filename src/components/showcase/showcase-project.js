@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import socket from '../../lib/socket';
 import events from '../../lib/events';
+import { calculateScrollPosTop, scroll } from '../../lib/positioning';
 
 class ShowcaseProject extends Component {
 	constructor() {
@@ -10,24 +11,59 @@ class ShowcaseProject extends Component {
 	}
 
 	componentWillMount(){
-		socket.once(events.closeProjectClient, (data) => {
+		socket.once(events.closeProjectClient, () => {
 			this.setState({
-				isClosing : true
+				isClosing : true,
+				selectedSection: 1
 			})
+		});
+
+		socket.on(events.changeSectionClient, ({sectionId}) => {
+			this.setState({
+				selectedSection: sectionId
+			});
+			console.log(this.scrollElem);
+			const target = this.projectElem.querySelector('.c-showcase-project__content.is-active');
+
+			scroll(calculateScrollPosTop(target), 500, this.scrollElem)
 		});
 	}
 
-	render() {
-		return <article className={'c-showcase-project' + (this.state.isClosing ? ' c-showcase-project--is-closing' : '')}>
-			<header className="c-showcase-project__header">
-				<h1 className="c-showcase-project__title">{this.props.title}</h1>
-			</header>
+	componentDidMount(){
+	}
 
-			<div className="c-showcase-project__content">
-				<div className="c-showcase-project__description">{this.props.description}</div>
+	renderExtraSections(){
+		return this.props.contents.map((section, index) => {
+			return <div key={index}
+						className={'c-showcase-project__content o-section--full-height'
+							+ (index % 2 ? '' : ' c-showcase-project__content--alt-bg')
+							+ (this.state.selectedSection === index+1 ? ' is-active' : '')
+						}>
+				<div className="c-showcase-project__description">{section.description}</div>
 				<div className="c-showcase-project__cover">
-					<img src={this.props.coverImg} alt={this.props.title}/>
+					<img src={section.coverImg} alt={section.title}/>
 				</div>
+			</div>
+		})
+	}
+
+	render() {
+		return <article
+			className={'c-showcase-project' + (this.state.isClosing ? ' c-showcase-project--is-closing' : '')}
+			ref={(projectElem) => { this.projectElem = projectElem; }} >
+			<div className="c-showcase-project__inner" ref={(scrollElem) => { this.scrollElem = scrollElem; }}>
+				<header className="c-showcase-project__header">
+					<h1 className="c-showcase-project__title">{this.props.title}</h1>
+				</header>
+
+				<div className={'c-showcase-project__content o-section--full-height' + (!this.state.selectedSection ? ' is-active' : '')}>
+					<div className="c-showcase-project__description">{this.props.description}</div>
+					<div className="c-showcase-project__cover">
+						<img src={this.props.coverImg} alt={this.props.title}/>
+					</div>
+				</div>
+
+				{this.renderExtraSections()}
 			</div>
 		</article>
 	}

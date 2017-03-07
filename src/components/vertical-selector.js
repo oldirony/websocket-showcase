@@ -2,31 +2,22 @@ import React, { Component } from 'react';
 import Slick from 'react-slick';
 
 class VerticalSelector extends Component {
-	static settings = {
-		dots: false,
-		infinite: false,
-		arrows: false,
-		speed: 500,
-		slidesToShow: 1,
-		vertical: true,
-		centerMode: true,
-		verticalSwiping: true,
-		slidesToScroll: 1,
-		edgeFriction: 1,
-		focusOnSelect: true
-		// swipeToSlide : true
-	};
-
-	constructor(){
-		super();
-
-		this.state = {
-			style: null
-		}
-	}
 
 	componentWillMount(){
-
+		 this.settings = {
+			dots: false,
+			infinite: false,
+			arrows: false,
+			speed: 500,
+			slidesToShow: 1,
+			vertical: true,
+			centerMode: true,
+			verticalSwiping: true,
+			slidesToScroll: 1,
+			edgeFriction: 1,
+			focusOnSelect: true,
+			afterChange: this.props.handleSlideChange
+		};
 	}
 
 	renderOptions() {
@@ -40,7 +31,7 @@ class VerticalSelector extends Component {
 					onTouchStart={this.handleTouchStart.bind(this)}
 					onTouchMove={this.handleTouch.bind(this)}
 					onTouchEnd={this.handleTouchEnd.bind(this)}>
-			<Slick {...VerticalSelector.settings}>
+			<Slick {...this.settings}>
 				{this.renderOptions()}
 			</Slick>
 		</nav>

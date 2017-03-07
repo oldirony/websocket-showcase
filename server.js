@@ -22,7 +22,6 @@ io.on(events.connection, function(client) {
 	});
 
 	client.on(events.selectProject, function(data) {
-		console.log('opened?');
 		client.broadcast.emit(events.selectProjectClient, data);
 	});
 
@@ -30,6 +29,10 @@ io.on(events.connection, function(client) {
 		client.emit(events.closeProjectClient, data);
 		client.broadcast.emit(events.closeProjectClient, data);
 	});
+
+	client.on(events.changeSection, function(data) {
+		client.broadcast.emit(events.changeSectionClient, data)
+	})
 });
 
 server.listen(8080);

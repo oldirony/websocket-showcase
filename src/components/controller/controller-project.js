@@ -19,7 +19,7 @@ class ControllerProject extends Component {
 	}
 
 	renderMainView(){
-		return	<VerticalSelector options={['click 1','click 2','click 3', 'click 4']} />
+		return	<VerticalSelector handleSlideChange={this.handleSlideChange} options={['Intro','Brief','Launch', 'Results']} />
 	}
 
 	render() {
@@ -45,6 +45,10 @@ class ControllerProject extends Component {
 	handleCloseClick() {
 		socket.emit(events.closeProject, 123);
 		this.context.router.push(routes.controller);
+	}
+
+	handleSlideChange(currentSlide){
+		socket.emit(events.changeSection, {sectionId : currentSlide});
 	}
 }
 

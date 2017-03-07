@@ -11,12 +11,17 @@
 
 	animation: slidein .3s forwards ease-out;
 
+	&__inner {
+		max-height: 100vh;
+		overflow-y: scroll;
+	}
+
 	&--is-closing {
 		animation: slideout .3s forwards ease-out;
 	}
 
 	&__header {
-
+		position: absolute;
 	}
 
 	&__title {
@@ -27,6 +32,11 @@
 	&__content {
 		display: flex;
 		align-items: center;
+		
+		
+		&--alt-bg {
+			background: #666;
+		}
 	}
 
 	&__description {
