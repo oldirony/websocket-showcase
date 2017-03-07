@@ -22,10 +22,13 @@ class ShowcaseProject extends Component {
 			this.setState({
 				selectedSection: sectionId
 			});
-			console.log(this.scrollElem);
+
 			const target = this.projectElem.querySelector('.c-showcase-project__content.is-active');
 
-			scroll(calculateScrollPosTop(target), 500, this.scrollElem)
+			console.log(calculateScrollPosTop(target));
+
+			scroll(target.offsetTop, 500, this.scrollElem);
+			// this.scrollElem.scrollTop = target.offsetTop;//calculateScrollPosTop(target);
 		});
 	}
 
