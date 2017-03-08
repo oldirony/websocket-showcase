@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import socket from '../../lib/socket';
 import events from '../../lib/events';
+import {routerShape} from 'react-router';
+import {routes} from '../../routes';
 import { calculateScrollPosTop, scroll } from '../../lib/positioning';
 
 class ShowcaseProject extends Component {
+	static contextTypes = {
+		router : routerShape
+	};
+
 	constructor() {
 		super();
 
@@ -23,6 +29,10 @@ class ShowcaseProject extends Component {
 				selectedSection: sectionId
 			});
 		});
+
+		socket.on(events.showTeamClient, ()=>{
+			this.context.router.push(routes.showcaseTeam)
+		})
 	}
 
 	componentDidUpdate() {
@@ -54,6 +64,18 @@ class ShowcaseProject extends Component {
 			</div>
 		})
 	}
+	renderContent(){
+		return <div>
+			<div className={'c-showcase-project__content o-section--full-height' + (!this.state.selectedSection ? ' is-active' : '')}>
+				<div className="c-showcase-project__description">{this.props.description}</div>
+				<div className="c-showcase-project__cover">
+					<img src={this.props.coverImg} alt={this.props.title}/>
+				</div>
+			</div>
+
+			{this.renderExtraSections()};
+		</div>
+	}
 
 	render() {
 		return <article
@@ -64,14 +86,7 @@ class ShowcaseProject extends Component {
 					<h1 className="c-showcase-project__title">{this.props.title}</h1>
 				</header>
 
-				<div className={'c-showcase-project__content o-section--full-height' + (!this.state.selectedSection ? ' is-active' : '')}>
-					<div className="c-showcase-project__description">{this.props.description}</div>
-					<div className="c-showcase-project__cover">
-						<img src={this.props.coverImg} alt={this.props.title}/>
-					</div>
-				</div>
-
-				{this.renderExtraSections()}
+				{this.props.children || this.renderContent()}
 			</div>
 		</article>
 	}

@@ -11,8 +11,8 @@ import Dropper from '../dropper';
 
 class ControllerProject extends Component {
 	static contextTypes = {
-		router : routerShape
-	};
+	router : routerShape
+};
 
 	componentWillMount() {
 		if(!this.props.currentProject){
@@ -38,17 +38,22 @@ class ControllerProject extends Component {
 				{this.props.children || this.renderMainView()}
 			</div>
 			<nav className="o-controller-side-nav o-controller-project__side-buttons">
-				<DraggableButton icon="#icon-close" action={this.handleCloseClick.bind(this)}/>
-				<DraggableButton icon="#icon-people"/>
+				<DraggableButton icon="#icon-close" action={this.handleCloseAction.bind(this)}/>
+				<DraggableButton icon="#icon-people" action={this.handleTeamAction.bind(this)}/>
 				<DraggableButton icon="#icon-timeline"/>
 			</nav>
 		</div>
 	}
 
 
-	handleCloseClick() {
+	handleCloseAction() {
 		socket.emit(events.closeProject, 123);
 		this.context.router.push(routes.controller);
+	}
+
+	handleTeamAction() {
+		socket.emit(events.showTeam, 123);
+		this.context.router.push(routes.controllerCurrentProjectTeam);
 	}
 
 	handleSlideChange(currentSlide){

@@ -34,15 +34,10 @@ io.on(events.connection, function(client) {
 		client.broadcast.emit(events.changeSectionClient, data)
 	});
 
-	client.on(events.loading, function(data) {
-		console.log(data);
-		client.emit(events.loadingClient, data)
+	client.on(events.showTeam, function(data) {
+		console.log('can');
+		client.broadcast.emit(events.showTeamClient, data)
 	});
-
-	client.on(events.loadingComplete, function(data) {
-		console.log(data);
-		client.emit(events.loadingCompleteClient, data)
-	})
 });
 
 server.listen(8080);
