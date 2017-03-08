@@ -39,8 +39,8 @@ class ControllerProject extends Component {
 			</div>
 			<nav className="o-controller-side-nav o-controller-project__side-buttons">
 				<DraggableButton icon="#icon-close" action={this.handleCloseAction.bind(this)}/>
-				<DraggableButton icon="#icon-people" action={this.handleTeamAction.bind(this)}/>
-				<DraggableButton icon="#icon-timeline"/>
+				<DraggableButton icon="#icon-people" action={this.handleTeamAction.bind(this)} keepView={true}/>
+				<DraggableButton icon="#icon-timeline" keepView={true}/>
 			</nav>
 		</div>
 	}

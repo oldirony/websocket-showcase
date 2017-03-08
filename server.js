@@ -35,7 +35,6 @@ io.on(events.connection, function(client) {
 	});
 
 	client.on(events.showTeam, function(data) {
-		console.log('can');
 		client.broadcast.emit(events.showTeamClient, data)
 	});
 });
