@@ -18,9 +18,7 @@ export const routes = {
 
 export default (
 	<Route path={routes.root} component={Layout}>
-		<IndexRoute component={ShowcaseLanding}/>
-		<Route path={routes.showcase}>
-			<IndexRoute component={ShowcaseLanding}/>
+		<Route path={routes.showcase} component={ShowcaseLanding}>
 			<Route path={routes.showcaseTeam} component={ShowcaseTeam} />
 		</Route>
 

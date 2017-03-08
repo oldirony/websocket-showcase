@@ -16,8 +16,12 @@ class ControllerProject extends Component {
 
 	componentWillMount() {
 		if(!this.props.currentProject){
-			this.context.router.push(routes.controller);
+			return this.context.router.push(routes.controller);
 		}
+
+		this.props.currentProject.team.teamMembers.forEach(teamMember=>{
+			new Image().src = teamMember.picture.medium
+		});
 	}
 
 	renderMainView(){

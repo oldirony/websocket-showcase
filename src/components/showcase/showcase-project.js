@@ -32,7 +32,7 @@ class ShowcaseProject extends Component {
 
 		socket.on(events.showTeamClient, ()=>{
 			this.context.router.push(routes.showcaseTeam)
-		})
+		});
 	}
 
 	componentDidUpdate() {
@@ -86,7 +86,7 @@ class ShowcaseProject extends Component {
 					<h1 className="c-showcase-project__title">{this.props.title}</h1>
 				</header>
 
-				{this.props.children || this.renderContent()}
+				{this.props.refChildren || this.renderContent()}
 			</div>
 		</article>
 	}
