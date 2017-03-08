@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import {easing} from '../lib/positioning';
 import Loader from './loader';
 
-import socket from '../lib/socket';
-import events from '../lib/events';
 
 class DraggableButton extends Component {
 	constructor() {
@@ -60,7 +58,11 @@ class DraggableButton extends Component {
 		}
 
 		if (this.isNearDropZone()){
-			this.translateTo({x: this.draggedDistance.x*2, y: - window.innerHeight}, 500, this.preAction.bind(this));
+			this.translateTo(
+				{x: this.draggedDistance.x * 2, y: -window.innerHeight},
+				500,
+				this.preAction.bind(this)
+			);
 
 		} else {
 			this.translateTo({x:0, y:0}, 300);
