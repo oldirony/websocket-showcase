@@ -1,7 +1,13 @@
 .o-section {
 	display: block;
+	box-sizing: border-box;
+	padding: 3rem;
 
 	&--full-height {
 		height: 100vh;
+	}
+
+	&--spaced-top {
+		padding-top: 5rem;
 	}
 }

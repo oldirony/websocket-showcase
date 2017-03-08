@@ -11,8 +11,8 @@ import Dropper from '../dropper';
 
 class ControllerProject extends Component {
 	static contextTypes = {
-	router : routerShape
-};
+		router : routerShape
+	};
 
 	componentWillMount() {
 		if(!this.props.currentProject){
