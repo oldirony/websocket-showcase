@@ -7,6 +7,7 @@ import { routerShape } from 'react-router';
 
 import VerticalSelector from '../vertical-selector';
 import DraggableButton from '../draggable-button';
+import Dropper from '../dropper';
 
 class ControllerProject extends Component {
 	static contextTypes = {
@@ -28,6 +29,7 @@ class ControllerProject extends Component {
 		if(!this.props.currentProject){ return <div></div>; }
 
 		return <div className="c-controller-project o-controller-project">
+			<Dropper/>
 			<header className="c-controller-project__header
 			o-controller-project__header">
 				<h1>{this.props.currentProject.title}</h1>

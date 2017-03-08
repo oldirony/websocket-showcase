@@ -18,10 +18,12 @@ class Loader extends Component {
 		</div>
 	}
 
-	openCircle({id}) {
+	openCircle({id, circleCoordinates}) {
 		this.circle = this.svg.circle(window.innerWidth, 0, 0);
 		this.circle.attr({
 			fill: "#fff",
+			cx: circleCoordinates ? circleCoordinates.x : window.innerWidth,
+			cy: circleCoordinates ? circleCoordinates.y : 0
 		});
 		this.loaderElem.style.height = window.innerHeight;
 		this.loaderElem.style.width = window.innerWidth;

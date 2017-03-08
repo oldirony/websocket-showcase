@@ -39,6 +39,7 @@ class ControllerCard extends Component {
 					onTouchStart={this.handleDragStart.bind(this)}
 					onTouchMove={this.handleDrag.bind(this)}
 					onTouchEnd={this.handleDragEnd.bind(this)}
+					ref={card=>this.cardElem = card}
 					style={this.state.style}
 		>
 			<img src={this.props.project.coverImg} alt={this.props.project.title}/>
@@ -110,6 +111,11 @@ class ControllerCard extends Component {
 
 		Loader.callLoader(()=>{
 			this.context.router.push(routes.controller + routes.controllerCurrentProject);
+		}, {
+			circleCoordinates : {
+				x : this.cardElem.offsetLeft + this.cardElem.scrollWidth / 2,
+				y : -100
+			}
 		});
 	}
 

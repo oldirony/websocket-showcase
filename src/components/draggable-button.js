@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import {easing} from '../lib/positioning';
 import Loader from './loader';
 
+import clientEvents from '../lib/client-events';
+import mediator from '../lib/mediator';
+
 
 class DraggableButton extends Component {
 	constructor() {
@@ -30,6 +33,7 @@ class DraggableButton extends Component {
 			x: event.nativeEvent.touches[0].clientX,
 			y: event.nativeEvent.touches[0].clientY
 		};
+		mediator.emit(clientEvents.dragging);
 		this.setState({isActive : true});
 	}
 
@@ -37,8 +41,8 @@ class DraggableButton extends Component {
 		if(this.isDragging) {
 
 			this.draggedDistance = {
-				x: event.nativeEvent.touches[0].clientX - this.initialDrag.x + this.previousTranslation.x,
-				y: event.nativeEvent.touches[0].clientY- this.initialDrag.y + this.previousTranslation.y
+				x: event.nativeEvent.touches[0].clientX - 16 - this.initialDrag.x + this.previousTranslation.x,
+				y: event.nativeEvent.touches[0].clientY - 16 - this.initialDrag.y + this.previousTranslation.y
 			};
 
 			this.move(this.draggedDistance);
@@ -58,22 +62,29 @@ class DraggableButton extends Component {
 		}
 
 		if (this.isNearDropZone()){
+
+			const circleCoordinates = {
+				x : window.innerWidth + (this.draggedDistance.x),
+				y: -100
+			};
 			this.translateTo(
-				{x: this.draggedDistance.x * 2, y: -window.innerHeight},
+				{x: this.draggedDistance.x , y: -window.innerHeight},
 				500,
-				this.preAction.bind(this)
+				this.preAction.bind(this, {circleCoordinates})
 			);
+			mediator.emit(clientEvents.draggingComplete);
+
 
 		} else {
-			this.translateTo({x:0, y:0}, 300);
+			this.translateTo({x:0, y:0}, 200, ()=>{	mediator.emit(clientEvents.draggingComplete);});
 		}
 
 		this.setState({isActive : false});
 	}
 
 
-	preAction(){
-		Loader.callLoader(this.props.action);
+	preAction(extraData){
+		Loader.callLoader(this.props.action, extraData);
 	}
 
 	move({x, y}){
