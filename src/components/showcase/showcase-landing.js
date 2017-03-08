@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { selectProject, closeProject } from '../../actions';
+import {routerShape} from 'react-router';
 import socket from '../../lib/socket';
 import events from '../../lib/events';
+import {routes} from '../../routes';
 
 
 import ShowcaseProject from './showcase-project';
 
 
 class ShowcaseLanding extends Component {
+	static contextTypes = {
+		router : routerShape
+	};
+
 	componentWillMount() {
 		this.props.selectProject(null);
 
@@ -25,6 +31,10 @@ class ShowcaseLanding extends Component {
 				this.props.closeProject();
 			}, 500)
 		});
+
+		if(!this.props.currentProject){
+			this.context.router.push(routes.showcase);
+		}
 	}
 
 	renderCurrentProject(){

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, addons } from 'react';
 import socket from '../../lib/socket';
 import events from '../../lib/events';
 import {routerShape} from 'react-router';
@@ -71,7 +71,7 @@ class ShowcaseProject extends Component {
 		})
 	}
 	renderContent(){
-		return <div>
+		return <div key="base">
 			<div className={'c-showcase-project__content o-section--full-height' + (!this.state.selectedSection ? ' is-active' : '')}>
 				<div className="c-showcase-project__description">{this.props.description}</div>
 				<div className="c-showcase-project__cover">
@@ -83,13 +83,14 @@ class ShowcaseProject extends Component {
 		</div>
 	}
 
-	renderChildren(){
-		return <ReactCSSTransitionGroup
-				transitionName="example"
-				transitionEnterTimeout={500}
-				transitionLeaveTimeout={300}>
-			{this.props.refChildren}
-			</ReactCSSTransitionGroup>
+	renderChild(){
+		if(this.props.refChildren){
+			return React.cloneElement(this.props.refChildren, {
+				key: location.pathname
+			})
+		} else {
+			return this.renderContent();
+		}
 	}
 
 	render() {
@@ -100,8 +101,14 @@ class ShowcaseProject extends Component {
 				<header className="c-showcase-project__header">
 					<h1 className="c-showcase-project__title">{this.props.title}</h1>
 				</header>
+				<ReactCSSTransitionGroup
+					transitionName="o-ps-translate-vertical"
+					transitionLeave={true}
+					transitionEnterTimeout={2000}
+					transitionLeaveTimeout={2000}>
 
-				{this.props.refChildren ? this.renderChildren() : this.renderContent()}
+					{this.renderChild()}
+				</ReactCSSTransitionGroup>
 			</div>
 		</article>
 	}

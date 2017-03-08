@@ -1,0 +1,26 @@
+.o-ps-translate-vertical {
+	&-enter {
+		opacity: 0.01;
+		transform: translateX(100%);
+	}
+
+	&-enter-active {
+		opacity: 1;
+		transition: opacity 500ms cubic-bezier(0,1,.5,1), transform 500ms cubic-bezier(0,1,.5,1);
+		transform: translateX(0);
+	}
+
+	&-leave {
+		opacity: 1;
+		transform: translateX(0);
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	&-leave-active {
+		opacity: 0.01;
+		transition: opacity 300ms cubic-bezier(0,1,.5,1), transform 500ms cubic-bezier(0,1,.5,1);
+		transform: translateX(-100%);
+	}
+}

@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 
 class ShowcaseTeam extends Component {
 	renderUsers() {
-		return this.props.currentProject.team.teamMembers.map(teamMember=>{
-			return <article className="o-layout-one-half o-section">
+		return this.props.currentProject.team.teamMembers.map((teamMember, index) =>{
+			return <article className="o-layout-one-half o-section" key={index}>
 				<header>
 					<img src={teamMember.picture.large} className="c-image c-image--rounded" alt=""/>
 					<h3>{`${teamMember.name.first} ${teamMember.name.last}`}</h3>
