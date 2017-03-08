@@ -8,10 +8,11 @@ class ControllerTeam extends Component {
 
 	renderUsers() {
 		return this.props.currentProject.team.teamMembers.map((teamMember, index)=>{
-			return <div key={index}>
-				<h4>{`${teamMember.name.first} ${teamMember.name.last}`}</h4>
-
-				<img src={teamMember.picture.medium} className="c-image c-image--rounded" alt=""/>
+			return <div key={index} className="o-layout-two-cols">
+				<h4 className="u-vertically-centered">{`${teamMember.name.first} ${teamMember.name.last}`}</h4>
+				<div>
+					<img src={teamMember.picture.medium} className="c-image c-image--rounded" alt=""/>
+				</div>
 			</div>
 		})
 	}

@@ -4,6 +4,7 @@ import events from '../../lib/events';
 import {routerShape} from 'react-router';
 import {routes} from '../../routes';
 import { calculateScrollPosTop, scroll } from '../../lib/positioning';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 class ShowcaseProject extends Component {
 	static contextTypes = {
@@ -21,7 +22,8 @@ class ShowcaseProject extends Component {
 			this.setState({
 				isClosing : true,
 				selectedSection: 1
-			})
+			});
+			this.context.router.push(routes.showcase)
 		});
 
 		socket.on(events.changeSectionClient, ({sectionId}) => {
@@ -36,8 +38,12 @@ class ShowcaseProject extends Component {
 	}
 
 	componentDidUpdate() {
-		const target = this.projectElem.querySelector('.c-showcase-project__content.is-active');
-		scroll(target.offsetTop, 500, this.scrollElem);
+		if(!this.props.refChildren){
+			const target = this.projectElem.querySelector('.c-showcase-project__content.is-active');
+			scroll(target.offsetTop, 500, this.scrollElem);
+		} else {
+			scroll(0, 10, this.scrollElem);
+		}
 	}
 
 	componentWillUnmount(){
@@ -77,6 +83,15 @@ class ShowcaseProject extends Component {
 		</div>
 	}
 
+	renderChildren(){
+		return <ReactCSSTransitionGroup
+				transitionName="example"
+				transitionEnterTimeout={500}
+				transitionLeaveTimeout={300}>
+			{this.props.refChildren}
+			</ReactCSSTransitionGroup>
+	}
+
 	render() {
 		return <article
 			className={'c-showcase-project' + (this.state.isClosing ? ' c-showcase-project--is-closing' : '')}
@@ -86,7 +101,7 @@ class ShowcaseProject extends Component {
 					<h1 className="c-showcase-project__title">{this.props.title}</h1>
 				</header>
 
-				{this.props.refChildren || this.renderContent()}
+				{this.props.refChildren ? this.renderChildren() : this.renderContent()}
 			</div>
 		</article>
 	}
