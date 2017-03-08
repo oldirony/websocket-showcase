@@ -2,6 +2,8 @@ export const FETCH_PROJECTS = 'FETCH_PROJECTS';
 export const SELECT_PROJECT = 'SELECT_PROJECTS';
 export const CLOSE_PROJECT = 'CLOSE_PROJECTS';
 
+import users from './users.json';
+
 const projects = [
 	{
 		title:'Suzuki website',
@@ -24,7 +26,8 @@ const projects = [
 				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer bibendum cursus neque. Curabitur maximus orci a tortor sagittis, in ornare erat interdum. In dolor tellus, venenatis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer bibendum cursus neque. Curabitur maximus orci a tortor sagittis, in ornare erat interdum. In dolor tellus, venenatis.',
 				coverImg : 'http://www.foolproof.co.uk/media/574310/Suzuki_process.jpg'
 			}
-		]
+		],
+		team : users
 	},
 	{
 		title:'project2',

@@ -1,0 +1,9 @@
+.c-image {
+	max-width: 100%;
+
+	&--rounded {
+		border-radius: 50%;
+		display: block;
+		overflow: hidden;
+	}
+}

@@ -1,0 +1,9 @@
+.o-layout-one-half {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+
+	> * {
+		flex: 0 0 calc(50% - 1rem);
+	}
+}
