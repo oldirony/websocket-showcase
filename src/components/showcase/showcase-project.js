@@ -102,10 +102,10 @@ class ShowcaseProject extends Component {
 					<h1 className="c-showcase-project__title">{this.props.title}</h1>
 				</header>
 				<ReactCSSTransitionGroup
-					transitionName="o-ps-translate-vertical"
+					transitionName="o-ps-translate-horizontal"
 					transitionLeave={true}
-					transitionEnterTimeout={2000}
-					transitionLeaveTimeout={2000}>
+					transitionEnterTimeout={500}
+					transitionLeaveTimeout={500}>
 
 					{this.renderChild()}
 				</ReactCSSTransitionGroup>
