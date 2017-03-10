@@ -32,9 +32,10 @@ class ShowcaseLanding extends Component {
 				transitionName="o-ps-translate-fade"
 				transitionEnterTimeout={500}
 				transitionLeaveTimeout={500}>
-				{
-					<div key='waiting' className="c-showcase-landing__waiting-message">Waiting for a project...</div>
-				}
+				<div className="o-layout-centered">
+					<img src="/assets/fp-logo.svg" alt=""/>
+					<div key='waiting' className="c-showcase-landing__waiting-message">Drag a project to start</div>
+				</div>
 			</ReactCSSTransitionGroup>
 		</div>
 	}
