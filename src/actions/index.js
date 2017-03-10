@@ -63,21 +63,11 @@ export function fetchProjects(){
 }
 
 
-export function selectProject(data){
+export function selectProject({id}){
 	return {
 		type: SELECT_PROJECT,
-		payload : data
+		payload : projects.filter((project)=>project.id == id)[0]
 	};
-
-
-	// return {
-	// 	type: SELECT_PROJECT,
-	// 	payload : {
-	// 		title:'project1',
-	// 		id: 1,
-	// 		description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer bibendum cursus neque. Curabitur maximus orci a tortor sagittis, in ornare erat interdum. In dolor tellus, venenatis.'
-	// 	}
-	// }
 }
 
 export function closeProject(data) {

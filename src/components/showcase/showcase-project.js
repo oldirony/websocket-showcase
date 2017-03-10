@@ -3,6 +3,8 @@ import socket from '../../lib/socket';
 import events from '../../lib/events';
 import {routerShape} from 'react-router';
 import {routes} from '../../routes';
+import { connect } from 'react-redux';
+import { selectProject, closeProject } from '../../actions';
 import { calculateScrollPosTop, scroll } from '../../lib/positioning';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
@@ -18,13 +20,8 @@ class ShowcaseProject extends Component {
 	}
 
 	componentWillMount(){
-		socket.once(events.closeProjectClient, () => {
-			this.setState({
-				isClosing : true,
-				selectedSection: 1
-			});
-			this.context.router.push(routes.showcase)
-		});
+		this.props.selectProject({id:this.props.params.id});
+		console.log(this.props.currentProject);
 
 		socket.on(events.changeSectionClient, ({sectionId}) => {
 			this.setState({
@@ -35,10 +32,23 @@ class ShowcaseProject extends Component {
 		socket.on(events.showTeamClient, ()=>{
 			this.context.router.push(routes.showcaseTeam)
 		});
+
+		socket.on(events.closeProjectClient, (data) => {
+			setTimeout(()=>{
+				this.props.closeProject();
+				this.context.router.push(routes.showcase);
+			}, 500)
+		});
+
+		// if(!this.props.currentProject){
+		// 	this.context.router.push(routes.showcase);
+		// }
 	}
 
 	componentDidUpdate() {
-		if(!this.props.refChildren){
+		if(!this.projectElem) return;
+
+		if(!this.props.children){
 			const target = this.projectElem.querySelector('.c-showcase-project__content.is-active');
 			scroll(target.offsetTop, 500, this.scrollElem);
 		} else {
@@ -56,7 +66,7 @@ class ShowcaseProject extends Component {
 			<p>{section.description}</p>
 		</div>;
 
-		return this.props.contents.map((section, index) => {
+		return this.props.currentProject.contents.map((section, index) => {
 			return <div key={index}
 						className={'c-showcase-project__content o-section--full-height'
 							+ (index % 2 ? '' : ' c-showcase-project__content--alt-bg')
@@ -73,9 +83,9 @@ class ShowcaseProject extends Component {
 	renderContent(){
 		return <div key="base">
 			<div className={'c-showcase-project__content o-section--full-height' + (!this.state.selectedSection ? ' is-active' : '')}>
-				<div className="c-showcase-project__description">{this.props.description}</div>
+				<div className="c-showcase-project__description">{this.props.currentProject.description}</div>
 				<div className="c-showcase-project__cover">
-					<img src={this.props.coverImg} alt={this.props.title}/>
+					<img src={this.props.currentProject.coverImg} alt={this.props.currentProject.title}/>
 				</div>
 			</div>
 
@@ -84,8 +94,8 @@ class ShowcaseProject extends Component {
 	}
 
 	renderChild(){
-		if(this.props.refChildren){
-			return React.cloneElement(this.props.refChildren, {
+		if(this.props.children){
+			return React.cloneElement(this.props.children, {
 				key: location.pathname
 			})
 		} else {
@@ -94,12 +104,13 @@ class ShowcaseProject extends Component {
 	}
 
 	render() {
+		if(!this.props.currentProject) return <div></div>;
 		return <article
-			className={'c-showcase-project' + (this.state.isClosing ? ' c-showcase-project--is-closing' : '')}
+			className={'c-showcase-project'}
 			ref={(projectElem) => { this.projectElem = projectElem; }} >
 			<div className="c-showcase-project__inner" ref={(scrollElem) => { this.scrollElem = scrollElem; }}>
 				<header className="c-showcase-project__header">
-					<h1 className="c-showcase-project__title">{this.props.title}</h1>
+					<h1 className="c-showcase-project__title">{this.props.currentProject.title}</h1>
 				</header>
 				<ReactCSSTransitionGroup
 					transitionName="o-ps-translate-horizontal"
@@ -114,4 +125,11 @@ class ShowcaseProject extends Component {
 	}
 }
 
-export default ShowcaseProject;
+function mapStateToProps(state){
+	return {
+		projects : state.projects.all,
+		currentProject : state.projects.current
+	}
+}
+
+export default connect(mapStateToProps, { selectProject, closeProject })(ShowcaseProject);
