@@ -1,5 +1,17 @@
 .c-controller-navigation {
-	display: flex;
-
 	padding: 1rem;
+
+	&__header {
+		display: flex;
+		align-items: center;
+		margin-bottom: 1rem;
+		color: #fff;
+	}
+
+
+	&__logo {
+		width: 2rem;
+		height: 2rem;
+		margin-right:1rem;
+	}
 }

@@ -13,7 +13,13 @@ class ControllerNavigation extends Component {
 			return <ControllerCard key={index} project={project} />
 		});
 		return <div className="c-controller-navigation">
-			{projectsList}
+			<header className="c-controller-navigation__header">
+				<img className="c-controller-navigation__logo" src="/assets/fp-logo.svg" alt=""/>
+				Foolproof
+			</header>
+			<div className="o-layout-two-cols">
+				{projectsList}
+			</div>
 
 			{this.props.children}
 		</div>

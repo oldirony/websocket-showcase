@@ -95,7 +95,7 @@ class ControllerProject extends Component {
 	}
 
 	handleHomeAction() {
-		socket.emit(events.showTeam);
+		socket.emit(events.showHome);
 		this.context.router.push(routes.controllerProject);
 	}
 

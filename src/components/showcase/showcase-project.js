@@ -5,7 +5,7 @@ import {routerShape} from 'react-router';
 import {routes} from '../../routes';
 import { connect } from 'react-redux';
 import { selectProject, closeProject } from '../../actions';
-import { calculateScrollPosTop, scroll } from '../../lib/positioning';
+import { scroll } from '../../lib/positioning';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 class ShowcaseProject extends Component {
@@ -26,6 +26,10 @@ class ShowcaseProject extends Component {
 			this.setState({
 				selectedSection: sectionId
 			});
+		});
+
+		socket.on(events.showHomeClient, ()=>{
+			this.context.router.push(routes.showcaseProject(this.props.params.id))
 		});
 
 		socket.on(events.showTeamClient, ()=>{
@@ -110,7 +114,7 @@ class ShowcaseProject extends Component {
 					transitionName="o-ps-translate-fade"
 					transitionLeave={true}
 					transitionAppear={false}
-					transitionEnterTimeout={10000}
+					transitionEnterTimeout={500}
 					transitionLeaveTimeout={500}>
 
 					{this.renderChild()}
