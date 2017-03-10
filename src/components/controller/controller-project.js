@@ -51,14 +51,14 @@ class ControllerProject extends Component {
 
 
 	handleCloseAction() {
-		socket.emit(events.closeProject, 123);
+		socket.emit(events.closeProject);
 		this.context.router.push(routes.controller);
 	}
 
 	handleTeamAction() {
-		socket.emit(events.showTeam, 123);
-		this.context.router.push(routes.controllerCurrentProjectTeam);
-	}
+		socket.emit(events.showTeam);
+		this.context.router.push(routes.controllerProjectTeam);
+}
 
 	handleSlideChange(currentSlide){
 		socket.emit(events.changeSection, {sectionId : currentSlide});
