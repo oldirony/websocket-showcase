@@ -33,13 +33,12 @@ class ShowcaseProject extends Component {
 		});
 
 		socket.on(events.closeProjectClient, () => {
+			this.props.closeProject();
 			this.context.router.push(routes.showcase);
 		});
 	}
 
 	componentDidUpdate() {
-		if(!this.projectElem) return;
-
 		if(!this.props.children){
 			const target = this.projectElem.querySelector('.c-showcase-project__content.is-active');
 			scroll(target.offsetTop, 500, this.scrollElem);
@@ -73,6 +72,8 @@ class ShowcaseProject extends Component {
 		})
 	}
 	renderContent(){
+		if(!this.props.currentProject) return;
+
 		return <div key="base">
 			<div className={'c-showcase-project__content o-section--full-height' + (!this.state.selectedSection ? ' is-active' : '')}>
 				<div className="c-showcase-project__description">{this.props.currentProject.description}</div>
@@ -96,18 +97,20 @@ class ShowcaseProject extends Component {
 	}
 
 	render() {
-		if(!this.props.currentProject) return <div></div>;
 		return <article
 			className={'c-showcase-project'}
 			ref={(projectElem) => { this.projectElem = projectElem; }} >
 			<div className="c-showcase-project__inner" ref={(scrollElem) => { this.scrollElem = scrollElem; }}>
 				<header className="c-showcase-project__header">
-					<h1 className="c-showcase-project__title">{this.props.currentProject.title}</h1>
+					<h1 className="c-showcase-project__title">{
+						this.props.currentProject ? this.props.currentProject.title : ''
+					}</h1>
 				</header>
 				<ReactCSSTransitionGroup
-					transitionName="o-ps-translate-horizontal"
+					transitionName="o-ps-translate-fade"
 					transitionLeave={true}
-					transitionEnterTimeout={500}
+					transitionAppear={false}
+					transitionEnterTimeout={10000}
 					transitionLeaveTimeout={500}>
 
 					{this.renderChild()}

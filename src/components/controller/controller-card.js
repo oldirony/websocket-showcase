@@ -110,7 +110,7 @@ class ControllerCard extends Component {
 		this.props.selectProject(this.props.project);
 
 		Loader.callLoader(()=>{
-			this.context.router.push(routes.controllerCurrentProject);
+			this.context.router.push(routes.controllerProject);
 		}, {
 			circleCoordinates : {
 				x : this.cardElem.offsetLeft + this.cardElem.scrollWidth / 2,

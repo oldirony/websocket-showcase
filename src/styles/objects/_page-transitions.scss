@@ -25,6 +25,32 @@
 	}
 }
 
+.o-ps-translate-fade {
+	&-enter {
+		opacity: 0.01;
+		transition: opacity 500ms cubic-bezier(0,1,.5,1);
+	}
+
+	&-enter-active {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	&-leave {
+		opacity: 1;
+		transform: translateX(0);
+		position: absolute;
+		top: 0;
+		left: 0;
+		transition: opacity 300ms cubic-bezier(0,1,.5,1);
+	}
+
+	&-leave-active {
+		opacity: 0.01;
+	}
+}
+
+
 .o-ps-translate-vertical {
 
 	&-enter {

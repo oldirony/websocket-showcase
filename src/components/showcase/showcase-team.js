@@ -23,7 +23,7 @@ class ShowcaseTeam extends Component {
 				<h1>TEAM</h1>
 			</div>
 			<div>
-				{this.renderUsers()}
+				{this.props.currentProject ? this.renderUsers() : <div></div>}
 			</div>
 		</div>
 	}

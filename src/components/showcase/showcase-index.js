@@ -20,9 +20,8 @@ class ShowcaseLanding extends Component {
 		return <div>
 			<ReactCSSTransitionGroup
 				transitionName="o-ps-translate-vertical"
-				transitionLeave={true}
-				transitionEnterTimeout={2000}
-				transitionLeaveTimeout={2000}>
+				transitionEnterTimeout={500}
+				transitionLeaveTimeout={500}>
 				{
 					 (this.props.children) ? React.cloneElement(this.props.children, {
 						key: this.props.params.id
@@ -30,10 +29,9 @@ class ShowcaseLanding extends Component {
 				}
 			</ReactCSSTransitionGroup>
 			<ReactCSSTransitionGroup
-				transitionName="o-ps-translate-horizontal"
-				transitionLeave={true}
-				transitionEnterTimeout={2000}
-				transitionLeaveTimeout={2000}>
+				transitionName="o-ps-translate-fade"
+				transitionEnterTimeout={500}
+				transitionLeaveTimeout={500}>
 				{
 					<div key='waiting' className="c-showcase-landing__waiting-message">Waiting for a project...</div>
 				}
