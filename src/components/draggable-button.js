@@ -1,20 +1,37 @@
 import React, { Component } from 'react';
 import {easing} from '../lib/positioning';
 import Loader from './loader';
+import { routerShape } from 'react-router';
 
 import clientEvents from '../lib/client-events';
 import mediator from '../lib/mediator';
 
 
 class DraggableButton extends Component {
+	static contextTypes = {
+		router : routerShape
+	};
+
 	constructor() {
 		super();
 		this.state = {
 			style: {}
 		}
 	}
+
+	componentWillMount(){
+		this.isDragging = false;
+		this.draggedDistance = {x:0,y:0};
+		this.previousTranslation = {};
+		this.initialDrag = {x:0,y:0};
+		this.lastTouch = {x:0,y:0};
+	}
+
 	render() {
-		return  <button className={'c-button-icon o-controller-side-nav__button' + (this.state.isActive ? ' is-active' : '' )}
+		return  <button className={'c-button-icon o-controller-side-nav__button'
+		+ (this.state.isActive ? ' is-active' : '' )
+		+ (this.props.hideAt === this.context.router.getCurrentLocation().pathname ? ' u-hidden' : '' )
+		}
 					onTouchStart={this.handleDragStart.bind(this)}
 					onTouchMove={this.handleDrag.bind(this)}
 					onTouchEnd={this.handleDragEnd.bind(this)}
@@ -27,7 +44,7 @@ class DraggableButton extends Component {
 
 	handleDragStart(event){
 		this.isDragging = true;
-		this.draggedDistance = this.draggedDistance || {x:0,y:0};
+		this.draggedDistance = this.lastTouch = this.draggedDistance || {x:0,y:0};
 		this.previousTranslation = {...this.draggedDistance};
 		this.initialDrag = {
 			x: event.nativeEvent.touches[0].clientX,
@@ -62,7 +79,6 @@ class DraggableButton extends Component {
 		}
 
 		if (this.isNearDropZone()){
-
 			const circleCoordinates = {
 				x : window.innerWidth + (this.draggedDistance.x),
 				y: -100
@@ -73,8 +89,6 @@ class DraggableButton extends Component {
 				this.preAction.bind(this, {circleCoordinates})
 			);
 			mediator.emit(clientEvents.draggingComplete);
-
-
 		} else {
 			this.translateTo({x:0, y:0}, 200, ()=>{	mediator.emit(clientEvents.draggingComplete);});
 		}

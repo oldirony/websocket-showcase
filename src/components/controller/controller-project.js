@@ -42,11 +42,45 @@ class ControllerProject extends Component {
 				{this.props.children || this.renderMainView()}
 			</div>
 			<nav className="o-controller-side-nav o-controller-project__side-buttons">
-				<DraggableButton icon="#icon-close" action={this.handleCloseAction.bind(this)}/>
-				<DraggableButton icon="#icon-people" action={this.handleTeamAction.bind(this)} keepView={true}/>
-				<DraggableButton icon="#icon-timeline" keepView={true}/>
+				{this.renderNav()}
 			</nav>
 		</div>
+	}
+
+
+	renderNav(){
+		const navItems = [
+			{
+				icon: "#icon-close",
+				action: this.handleCloseAction
+			},
+			{
+				icon: "#icon-home",
+				action: this.handleHomeAction,
+				keepView: true,
+				hideAt: routes.controllerProject
+			},
+			{
+				icon: "#icon-people",
+				action: this.handleTeamAction,
+				keepView: true,
+				hideAt: routes.controllerProjectTeam
+			},
+			{
+				icon: "#icon-timeline",
+				action: this.handleCloseAction,
+				keepView: true
+			}
+		];
+
+		return navItems.map(({icon, action, keepView, hideAt}, index) =>  {
+			return <DraggableButton
+				key={index}
+				icon={icon}
+				action={action.bind(this)}
+				hideAt={hideAt}
+				keepView={keepView} />
+		});
 	}
 
 
@@ -58,11 +92,17 @@ class ControllerProject extends Component {
 	handleTeamAction() {
 		socket.emit(events.showTeam);
 		this.context.router.push(routes.controllerProjectTeam);
-}
+	}
+
+	handleHomeAction() {
+		socket.emit(events.showTeam);
+		this.context.router.push(routes.controllerProject);
+	}
 
 	handleSlideChange(currentSlide){
 		socket.emit(events.changeSection, {sectionId : currentSlide});
 	}
+
 }
 
 function mapStateToProps(state){

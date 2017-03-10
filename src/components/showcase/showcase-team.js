@@ -13,6 +13,7 @@ class ShowcaseTeam extends Component {
 				</header>
 
 				<div>
+					<h3>Intro</h3>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi consequuntur cumque debitis dolorem dolores error eveniet, expedita facilis ipsam mollitia nisi omnis praesentium quaerat quos repellat rerum saepe sequi vel.</p></div>
 				</article>
 		})
