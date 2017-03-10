@@ -8,21 +8,25 @@ import ControllerNavigation from './components/controller/controller-navigation'
 import ControllerProject from './components/controller/controller-project';
 import ControllerTeam from './components/controller/controller-team';
 
-export const routes = {
-	root: '/',
-	showcase : '/showcase',
-	showcaseProject : '/showcase/project/:id',
-	showcaseTeam : '/showcase/project/:id/team',
-	controller : '/controller',
-	controllerCurrentProject : '/controller/project',
-	controllerCurrentProjectTeam : '/controller/project/team',
-};
+class Routes {
+	constructor(){
+		this.root =  '/';
+		this.showcase  =  '/showcase';
+		this.showcaseProject  =  (id=':id')=>`${this.showcase}/project/${id}`;
+		this.showcaseProjectTeam  =  (id=':id')=>this.showcaseProject(id)+'/team';
+		this.controller  =  '/controller';
+		this.controllerCurrentProject  =  `${this.controller}/project`;
+		this.controllerCurrentProjectTeam  =  `${this.controllerCurrentProject}/team`;
+	}
+}
+
+export const routes = new Routes();
 
 export default (
 	<Route path={routes.root} component={Layout}>
 		<Route path={routes.showcase} component={ShowcaseLanding}>
-			<Route path={routes.showcaseProject} component={ShowcaseProject}>
-				<Route path={routes.showcaseTeam} component={ShowcaseTeam} />
+			<Route path={routes.showcaseProject()} component={ShowcaseProject}>
+				<Route path={routes.showcaseProjectTeam()} component={ShowcaseTeam} />
 			</Route>
 		</Route>
 

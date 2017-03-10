@@ -3,11 +3,7 @@ import {routerShape} from 'react-router';
 import socket from '../../lib/socket';
 import events from '../../lib/events';
 import {routes} from '../../routes';
-
-
-import ShowcaseProject from './showcase-project';
-
-console.log();
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class ShowcaseLanding extends Component {
 	static contextTypes = {
@@ -15,25 +11,34 @@ class ShowcaseLanding extends Component {
 	};
 
 	componentWillMount() {
-		// this.props.selectProject(null);
-
-		socket.on(events.connect, function(data) {
-			socket.emit('join', 'Showcase connected');
-		});
-
 		socket.on(events.selectProjectClient, (data) => {
-
 			this.context.router.push(routes.showcase + '/project/' + data.id);
-			// this.props.selectProject(data);
-			// console.log('can');
 		});
-
 	}
 
 	renderCurrentProject(){
-		if(!this.props.children) return <div className="c-showcase-landing__waiting-message">Waiting for a project...</div>;
-
-		return this.props.children;
+		return <div>
+			<ReactCSSTransitionGroup
+				transitionName="o-ps-translate-vertical"
+				transitionLeave={true}
+				transitionEnterTimeout={2000}
+				transitionLeaveTimeout={2000}>
+				{
+					 (this.props.children) ? React.cloneElement(this.props.children, {
+						key: this.props.params.id
+					}) : null
+				}
+			</ReactCSSTransitionGroup>
+			<ReactCSSTransitionGroup
+				transitionName="o-ps-translate-horizontal"
+				transitionLeave={true}
+				transitionEnterTimeout={2000}
+				transitionLeaveTimeout={2000}>
+				{
+					<div key='waiting' className="c-showcase-landing__waiting-message">Waiting for a project...</div>
+				}
+			</ReactCSSTransitionGroup>
+		</div>
 	}
 
 	render() {

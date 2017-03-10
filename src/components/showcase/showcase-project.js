@@ -21,7 +21,6 @@ class ShowcaseProject extends Component {
 
 	componentWillMount(){
 		this.props.selectProject({id:this.props.params.id});
-		console.log(this.props.currentProject);
 
 		socket.on(events.changeSectionClient, ({sectionId}) => {
 			this.setState({
@@ -30,19 +29,12 @@ class ShowcaseProject extends Component {
 		});
 
 		socket.on(events.showTeamClient, ()=>{
-			this.context.router.push(routes.showcaseTeam)
+			this.context.router.push(routes.showcaseProjectTeam(this.props.params.id))
 		});
 
-		socket.on(events.closeProjectClient, (data) => {
-			setTimeout(()=>{
-				this.props.closeProject();
-				this.context.router.push(routes.showcase);
-			}, 500)
+		socket.on(events.closeProjectClient, () => {
+			this.context.router.push(routes.showcase);
 		});
-
-		// if(!this.props.currentProject){
-		// 	this.context.router.push(routes.showcase);
-		// }
 	}
 
 	componentDidUpdate() {

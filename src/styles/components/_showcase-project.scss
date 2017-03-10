@@ -9,7 +9,7 @@
 	color: #333;
 	border-top: .8rem solid $dark-green;
 
-	animation: slidein .3s forwards ease-out;
+	//animation: slidein .3s forwards ease-out;
 
 	&__inner {
 		max-height: 100vh;
@@ -17,7 +17,7 @@
 	}
 
 	&--is-closing {
-		animation: slideout .3s forwards ease-out;
+		//animation: slideout .3s forwards ease-out;
 	}
 
 	&__header {
