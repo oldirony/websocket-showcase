@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import VerticalSelector from '../vertical-selector';
+import Scrollable from '../scrollable';
 
 class ControllerTeam extends Component {
 	componentWillMount(){
@@ -13,16 +13,14 @@ class ControllerTeam extends Component {
 
 	renderUsers() {
 		return this.props.currentProject.team.teamMembers.map((teamMember, index)=>{
-			return <div key={index} className="o-layout-two-cols">
+			return <div key={index} className="u-text-centered">
 				<h4 className="u-vertically-centered">{`${teamMember.name.first} ${teamMember.name.last}`}</h4>
-				<div>
-					<img src={teamMember.picture.medium} className="c-image c-image--rounded" alt=""/>
-				</div>
+				<img src={teamMember.picture.medium} className="c-image c-image--rounded" alt=""/>
 			</div>
 		})
 	}
 	render() {
-		return <div className="c-app"><VerticalSelector options={this.renderUsers()}/></div>
+		return <div className="c-app"><Scrollable contents={this.renderUsers()}/></div>
 	}
 }
 

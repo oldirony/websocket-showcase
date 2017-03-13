@@ -1,0 +1,10 @@
+.o-scrollable {
+	display: flex;
+	overflow-x: auto;
+	justify-content: space-between;
+
+	> * {
+		flex-shrink: 0;
+		margin: 0 1em;
+	}
+}
