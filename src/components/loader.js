@@ -35,7 +35,7 @@ class Loader extends Component {
 			300,
 			() => {
 				mediator.emit(clientEvents.loadingComplete, {id});
-				setTimeout(this.closeCircle.bind(this), 500);
+				setTimeout(this.closeCircle.bind(this), 300);
 			}
 		)
 	}
