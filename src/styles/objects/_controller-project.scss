@@ -3,16 +3,16 @@
 	justify-content: space-between;
 	flex-wrap: wrap;
 	align-items:flex-start;
-	overflow: hidden;
+
 
 	&__header {
-		flex: 0 1 100%;
+		flex-grow:0;
 		margin-bottom: 1rem;
 	}
 
 	&__views {
 		flex: 0 1 90%;
-		overflow: hidden;
+		overflow-x: hidden;
 	}
 
 	&__side-buttons {

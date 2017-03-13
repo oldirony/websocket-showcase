@@ -14,6 +14,14 @@
 	align-self: center;
 }
 
+.u-vertically-stretched {
+	align-self: stretch;
+}
+
+.u-grow {
+	flex-grow:1;
+}
+
 .u-hidden {
 	display: none!important;
 }

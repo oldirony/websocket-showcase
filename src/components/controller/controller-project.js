@@ -41,24 +41,29 @@ class ControllerProject extends Component {
 		if(!this.props.currentProject){ return <div></div>; }
 
 		return <div className="c-controller-project o-controller-project">
-			<Dropper/>
-			<header className="c-controller-project__header
+			<div className="o-layout-two-rows">
+				<Dropper/>
+				<header className="c-controller-project__header
 			o-controller-project__header">
-				<h1 className="c-controller-project__title">
-					{this.props.currentProject.title}
-					<span className="c-controller-project__section-title"> / {this.state.section}</span>
-				</h1>
-			</header>
-			<div className="o-controller-project__views">
-				{this.props.children
-					? React.cloneElement(this.props.children, {
-						updateSectionTitle: this.updateSectionTitle.bind(this)
-					})
-					: this.renderMainView()}
+					<h1 className="c-controller-project__title">
+						{this.props.currentProject.title}
+						<span className="c-controller-project__section-title"> / {this.state.section}</span>
+					</h1>
+				</header>
+
+				<div className="o-layout-two-cols u-grow">
+					<div className="o-controller-project__views u-vertically-stretched">
+						{this.props.children
+							? React.cloneElement(this.props.children, {
+								updateSectionTitle: this.updateSectionTitle.bind(this)
+							})
+							: this.renderMainView()}
+					</div>
+					<nav className="o-controller-side-nav o-controller-project__side-buttons">
+						{this.renderNav()}
+					</nav>
+				</div>
 			</div>
-			<nav className="o-controller-side-nav o-controller-project__side-buttons">
-				{this.renderNav()}
-			</nav>
 		</div>
 	}
 
