@@ -7,7 +7,7 @@
 	right: 0;
 	left: 0;
 	background: $green;
-	//animation: expandIn .3s;
+	//animation: expandIn .3s;x
 	//animation-fill-mode: forwards;
 	//animation-delay: .3s;
 	//opacity: 0;
@@ -16,6 +16,15 @@
 	&__header {
 		border-bottom: 1px solid currentColor;
 		padding-right: 2rem;
+	}
+
+	&__title {
+		font-size: 1.2rem;
+	}
+
+	&__section-title {
+		font-weight: normal;
+		font-size: 1rem;
 	}
 }
 

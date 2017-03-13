@@ -1,11 +1,13 @@
 .o-controller-project {
 	display: flex;
 	justify-content: space-between;
-	align-items:center;
+	flex-wrap: wrap;
+	align-items:flex-start;
+	overflow: hidden;
 
 	&__header {
-		flex-shrink: 0;
-		margin-right: 1rem;
+		flex: 0 1 100%;
+		margin-bottom: 1rem;
 	}
 
 	&__views {

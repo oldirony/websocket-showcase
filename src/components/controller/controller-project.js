@@ -14,6 +14,13 @@ class ControllerProject extends Component {
 		router : routerShape
 	};
 
+	constructor() {
+		super();
+		this.state = {
+			section: 'Home'
+		}
+	}
+
 	componentWillMount() {
 		if(!this.props.currentProject){
 			return this.context.router.push(routes.controller);
@@ -25,8 +32,9 @@ class ControllerProject extends Component {
 	}
 
 	renderMainView(){
-		const options = ['Intro'].concat(this.props.currentProject.contents.map(content => content.title));
-		return	<VerticalSelector handleSlideChange={this.handleSlideChange} options={options} />
+		const options = ['1. Intro'].concat(this.props.currentProject.contents.map((content, index) => `${index+2}. ${content.title}`));
+		return <VerticalSelector handleSlideChange={this.handleSlideChange} options={options} />
+
 	}
 
 	render() {
@@ -36,10 +44,17 @@ class ControllerProject extends Component {
 			<Dropper/>
 			<header className="c-controller-project__header
 			o-controller-project__header">
-				<h1>{this.props.currentProject.title}</h1>
+				<h1 className="c-controller-project__title">
+					{this.props.currentProject.title}
+					<span className="c-controller-project__section-title"> / {this.state.section}</span>
+				</h1>
 			</header>
 			<div className="o-controller-project__views">
-				{this.props.children || this.renderMainView()}
+				{this.props.children
+					? React.cloneElement(this.props.children, {
+						updateSectionTitle: this.updateSectionTitle.bind(this)
+					})
+					: this.renderMainView()}
 			</div>
 			<nav className="o-controller-side-nav o-controller-project__side-buttons">
 				{this.renderNav()}
@@ -101,6 +116,12 @@ class ControllerProject extends Component {
 
 	handleSlideChange(currentSlide){
 		socket.emit(events.changeSection, {sectionId : currentSlide});
+	}
+
+	updateSectionTitle(newSectionTitle = 'Intro'){
+		this.setState({
+			section: newSectionTitle
+		});
 	}
 
 }

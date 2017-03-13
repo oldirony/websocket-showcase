@@ -4,6 +4,11 @@ import VerticalSelector from '../vertical-selector';
 
 class ControllerTeam extends Component {
 	componentWillMount(){
+		this.props.updateSectionTitle('Team');
+	}
+
+	componentWillUnmount(){
+		this.props.updateSectionTitle();
 	}
 
 	renderUsers() {
