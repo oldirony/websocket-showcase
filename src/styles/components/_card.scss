@@ -1,0 +1,33 @@
+.c-card {
+	background: white;
+	margin:0 0 1rem;
+	//color: #fff;
+	border-top: 0px solid $dark-green;
+	border-radius: 3px;
+	overflow: hidden;
+	box-shadow: 0 1px 3px rgba(#000, .3);
+
+	&--with-single-image {
+		overflow: visible;
+		margin-top: 6rem;
+	}
+
+	&__single-image {
+		display: block;
+		margin: auto;
+		margin-top: -4rem;
+	}
+
+	&__title {
+		padding: 1rem 1rem 0rem;
+		margin-top: 0;
+		margin-bottom: 0;
+		font-size: 1.2rem;
+	}
+
+
+	&__description {
+		font-size: .8rem;
+		padding:1rem;
+	}
+}

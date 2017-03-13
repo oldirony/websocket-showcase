@@ -2,3 +2,13 @@
 	display: flex;
 	justify-content: space-between;
 }
+
+.o-layout-four-cols {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+
+	> * {
+		flex: 0 0 calc(25% - 1rem);
+	}
+}

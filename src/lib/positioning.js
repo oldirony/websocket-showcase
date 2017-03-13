@@ -1,10 +1,3 @@
-
-
-export function calculateScrollPosTop (el) {
-	const bbox = el.getBoundingClientRect();
-	return bbox.top;// + Math.round(bbox.height/2);// + window.pageYOffset - window.innerHeight;
-}
-
 export function easing (t) {
 	return t*(2-t)
 }
