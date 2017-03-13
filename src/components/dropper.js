@@ -20,22 +20,24 @@ class Dropper extends Component {
 	}
 
 
-	showDropper() {
+	showDropper(cx, cy, r) {
 		if(!this.dropperElem) return;
+
+		cx = cx || window.innerWidth * 8/9;
+		cy = cy || -window.innerWidth / 12;
+		r =  r || window.innerWidth / 6;
 
 		this.circle = this.svg.circle(0, 0, 0);
 		this.circle.attr({
 			fill: "rgba(0,0,0,0.5)",
-			cx: window.innerWidth / 4,
-			cy: - window.innerWidth / 8
+			cx,
+			cy
 		});
 		this.dropperElem.style.height = window.innerWidth / 2;
-		this.dropperElem.style.width = window.innerWidth / 2;
+		this.dropperElem.style.width = window.innerWidth;
 
 		this.circle.animate(
-			{
-				r: window.innerWidth / 4
-			},
+			{ r },
 			200,
 			mina['easeinout']
 		)
