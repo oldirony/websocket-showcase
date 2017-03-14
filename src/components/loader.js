@@ -35,30 +35,32 @@ class Loader extends Component {
 			300,
 			() => {
 				mediator.emit(clientEvents.loadingComplete, {id});
-				setTimeout(this.closeCircle.bind(this), 300);
+				setTimeout(this.closeCircle.bind(this, id), 150);
 			}
 		)
 	}
 
-	closeCircle() {
+	closeCircle(id) {
 		this.circle.animate({
 			opacity: 0
 		}, 150, ()=> {
 			this.circle.attr({r: 0});
 			this.loaderElem.style.height = this.loaderElem.style.width = 0;
+			mediator.emit(clientEvents.loadingAnimationComplete, {id});
 		})
 	}
 
-	static callLoader(callback, extraData = {}){
+	static callLoader(extraData = {}, callback, endCallback){
 		const id = Math.random();
 
 		mediator.emit(clientEvents.loading, {id, ...extraData});
 
 		mediator.on(clientEvents.loadingComplete, (data)=>{
-			if(data.id === id) {
-				callback();
-				mediator.removeAllListeners(clientEvents.loadingComplete);
-			}
+			if(data.id === id && callback) callback();
+		});
+
+		mediator.on(clientEvents.loadingAnimationComplete, (data)=>{
+			if(data.id === id && endCallback) endCallback();
 		});
 	}
 }

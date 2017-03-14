@@ -4,6 +4,8 @@ import { routerShape } from 'react-router';
 
 import socket from '../../lib/socket';
 import events from '../../lib/events';
+import mediator from '../../lib/mediator';
+import clientEvents from '../../lib/client-events'
 import { routes } from '../../routes';
 import { selectProject } from '../../actions';
 
@@ -25,7 +27,9 @@ class ControllerCard extends Draggable {
 		super.componentWillMount();
 
 		socket.on(events.closeProjectClient, () => {
-			setTimeout(()=>{this.translateTo({x:0, y:0}, 500)}, 700)
+			mediator.once(clientEvents.loadingAnimationComplete, ()=>{
+				this.translateTo({x:0, y:0}, 500)
+			})
 		});
 	}
 
@@ -52,14 +56,17 @@ class ControllerCard extends Draggable {
 		socket.emit(events.selectProject, this.props.project);
 		this.props.selectProject(this.props.project);
 
-		Loader.callLoader(()=>{
-			this.context.router.push(routes.controllerProject);
-		}, {
-			circleCoordinates : {
-				x : this.cardElem.offsetLeft + this.cardElem.scrollWidth / 2,
-				y : -100
+		Loader.callLoader(
+			{
+				circleCoordinates : {
+					x : this.cardElem.offsetLeft + this.cardElem.scrollWidth / 2,
+					y : -100
+				}
+			},
+			()=>{
+				this.context.router.push(routes.controllerProject);
 			}
-		});
+		);
 	}
 
 	isNearDropZone(){

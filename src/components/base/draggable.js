@@ -93,12 +93,14 @@ class DraggableButton extends Component {
 
 
 	preAction(extraData){
-		Loader.callLoader(()=>{
-			this.props.action();
-			if(this.props.keepView) {
-				this.translateTo({x:0, y:0}, 10);
-			}
-		}, extraData);
+		Loader.callLoader(
+			extraData,
+			()=>{
+				this.props.action();
+				if(this.props.keepView) {
+					this.translateTo({x:0, y:0}, 10);
+				}
+			});
 	}
 
 	move({x, y}){
