@@ -99,7 +99,8 @@ class ControllerProject extends Component {
 				icon={icon}
 				action={action.bind(this)}
 				hideAt={hideAt}
-				keepView={keepView} />
+				keepView={keepView}
+				onlyVertical={true} />
 		});
 	}
 

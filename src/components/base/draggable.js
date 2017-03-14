@@ -53,9 +53,11 @@ class DraggableButton extends Component {
 		if(this.isDragging) {
 
 			this.draggedDistance = {
-				x: event.nativeEvent.touches[0].clientX - 16 - this.initialDrag.x + this.previousTranslation.x,
-				y: event.nativeEvent.touches[0].clientY - 16 - this.initialDrag.y + this.previousTranslation.y
+				x: event.nativeEvent.touches[0].clientX - this.initialDrag.x + this.previousTranslation.x,
+				y: event.nativeEvent.touches[0].clientY - this.initialDrag.y + this.previousTranslation.y
 			};
+
+			this.overrideDragDistance();
 
 			this.move(this.draggedDistance);
 
@@ -89,6 +91,18 @@ class DraggableButton extends Component {
 		}
 
 		this.setState({isActive : false});
+	}
+
+
+	overrideDragDistance(){
+		if(this.props.onlyVertical){
+			this.draggedDistance.x = this.draggedDistance.x / 4;
+		}
+
+		if(!this.props.enableDragDown && this.draggedDistance.y > 0) {
+				this.draggedDistance.y = this.draggedDistance.y/4;
+		}
+
 	}
 
 

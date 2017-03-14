@@ -10,7 +10,7 @@ class ControllerNavigation extends Component {
 
 	render() {
 		const projectsList = (this.props.projects || []).map((project, index) => {
-			return <ControllerCard key={index} project={project} />
+			return <ControllerCard key={index} project={project} onlyVertical={true} />
 		});
 		return <div className="c-controller-navigation">
 			<header className="c-controller-navigation__header">
