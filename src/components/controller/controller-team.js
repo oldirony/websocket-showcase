@@ -45,7 +45,14 @@ class ControllerTeam extends Component {
 	}
 
 	toggleMemberActivation(event){
-		this.setState({activeMember : parseInt(event.nativeEvent.target.dataset.id || event.nativeEvent.target.parentNode.dataset.id)});
+		const memberId = parseInt(event.nativeEvent.target.dataset.id || event.nativeEvent.target.parentNode.dataset.id);
+
+		this.setState(
+			{activeMember : (memberId === this.state.activeMember ? null : memberId)},
+			()=>{
+				socket.emit(events.selectTeamMember, {activeMember: this.state.activeMember})
+			}
+		);
 	}
 }
 
@@ -57,4 +64,4 @@ function mapStateToProps(state){
 }
 
 
-export default connect(mapStateToProps)(ControllerTeam);
+export default connect(mapStateToProps, {})(ControllerTeam);
