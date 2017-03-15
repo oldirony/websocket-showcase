@@ -41,6 +41,10 @@ io.on(events.connection, function(client) {
 	client.on(events.showHome, function(data) {
 		client.broadcast.emit(events.showHomeClient, data)
 	});
+
+	client.on(events.selectTeamMember, function(data) {
+		client.broadcast.emit(events.selectTeamMemberClient, data)
+	});
 });
 
 server.listen(8080);

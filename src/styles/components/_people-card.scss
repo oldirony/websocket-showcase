@@ -1,0 +1,28 @@
+.c-people-card {
+	padding-top: .5rem;
+	margin-bottom: 1rem;
+	text-align: center;
+
+	&__image {
+		margin-bottom: .4rem;
+	}
+
+
+	&__title {
+		font-size: .9rem;
+	}
+
+	&__subtitle {
+		margin-top: .4rem;
+		text-transform: uppercase;
+		font-size: .7rem;
+		opacity: .9;
+	}
+
+	&.is-active {
+		.c-people-card__image {
+			box-shadow: 0 0 0 3px rgba(white,0.9);
+			//border: 2px solid white;
+		}
+	}
+}

@@ -7,6 +7,7 @@
 				"first": "jordan",
 				"last": "rogers"
 			},
+			"role" : "Designer",
 			"location": {
 				"street": "7410 w pecan st",
 				"city": "cairns",
@@ -44,6 +45,7 @@
 				"first": "sofia",
 				"last": "muñoz"
 			},
+			"role" : "Designer",
 			"location": {
 				"street": "3615 calle del prado",
 				"city": "ferrol",
@@ -81,6 +83,7 @@
 				"first": "marie",
 				"last": "madsen"
 			},
+			"role" : "Designer",
 			"location": {
 				"street": "3592 damgårdsvej",
 				"city": "jystrup",
@@ -118,6 +121,7 @@
 				"first": "walter",
 				"last": "henry"
 			},
+			"role" : "Designer",
 			"location": {
 				"street": "4033 mill road",
 				"city": "portarlington",
@@ -155,6 +159,7 @@
 				"first": "armando",
 				"last": "lord"
 			},
+			"role" : "Designer",
 			"location": {
 				"street": "1696 the grove",
 				"city": "londonderry",
@@ -192,6 +197,7 @@
 				"first": "leire",
 				"last": "da paz"
 			},
+			"role" : "Designer",
 			"location": {
 				"street": "4150 rua josé bonifácio ",
 				"city": "alagoinhas",
@@ -229,6 +235,7 @@
 				"first": "paul",
 				"last": "morris"
 			},
+			"role" : "Designer",
 			"location": {
 				"street": "9640 samaritan dr",
 				"city": "broken arrow",
@@ -266,6 +273,7 @@
 				"first": "mattie",
 				"last": "ward"
 			},
+			"role" : "Designer",
 			"location": {
 				"street": "8588 lakeshore rd",
 				"city": "bathurst",
@@ -303,6 +311,7 @@
 				"first": "méline",
 				"last": "bernard"
 			},
+			"role" : "Designer",
 			"location": {
 				"street": "6510 rue du moulin",
 				"city": "le havre",
@@ -340,6 +349,7 @@
 				"first": "susan",
 				"last": "otoole"
 			},
+			"role" : "Designer",
 			"location": {
 				"street": "5665 park road",
 				"city": "birr",

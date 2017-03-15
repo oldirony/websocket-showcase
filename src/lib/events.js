@@ -11,5 +11,7 @@ module.exports = {
 	showHome : 'SHOW_HOME',
 	showHomeClient : 'SHOW_HOME_CLIENT',
 	showTeam : 'SHOW_TEAM',
-	showTeamClient : 'SHOW_TEAM_CLIENT'
+	showTeamClient : 'SHOW_TEAM_CLIENT',
+	selectTeamMember : 'SELECT_TEAM_MEMBER',
+	selectTeamMemberClient : 'SELECT_TEAM_MEMBER_CLIENT'
 };
