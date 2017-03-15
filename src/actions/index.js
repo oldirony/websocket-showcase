@@ -2,6 +2,7 @@ export const FETCH_PROJECTS = 'FETCH_PROJECTS';
 export const SELECT_PROJECT = 'SELECT_PROJECTS';
 export const CLOSE_PROJECT = 'CLOSE_PROJECTS';
 export const SELECT_TEAM_MEMBER = 'SELECT_TEAM_MEMBER';
+export const UNSELECT_TEAM_MEMBER = 'UNSELECT_TEAM_MEMBER';
 
 import users from './users.json';
 
@@ -81,6 +82,13 @@ export function closeProject(data) {
 export function selectTeamMember(data){
 	return {
 		type: SELECT_TEAM_MEMBER,
+		payload : data
+	};
+}
+
+export function unselectTeamMember(data){
+	return {
+		type: UNSELECT_TEAM_MEMBER,
 		payload : data
 	};
 }

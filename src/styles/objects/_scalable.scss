@@ -1,5 +1,5 @@
 .o-scalable {
-	transition: transform .1s;
+	transition: transform .2s;
 
 	> * {
 		transition: opacity .1s;
@@ -9,6 +9,7 @@
 	&.is-active {
 		transform: scale(10);
 		transition: transform .6s;
+		z-index:1;
 
 		> * {
 			transition: opacity .4s;

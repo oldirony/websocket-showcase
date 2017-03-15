@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { selectTeamMember } from '../../actions'
+import { selectTeamMember, unselectTeamMember } from '../../actions'
+import { routerShape } from 'react-router';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import socket from '../../lib/socket';
 import events from '../../lib/events';
+import { routes } from '../../routes';
 
 class ShowcaseTeam extends Component {
+	static contextTypes = {
+		router : routerShape
+	};
+
 	constructor(){
 		super();
 
@@ -19,30 +26,60 @@ class ShowcaseTeam extends Component {
 		socket.on(events.selectTeamMemberClient, this.selectMember.bind(this))
 	}
 
+	componentDidUpdate(){
+		if(!this.props.teamMember) return;
+
+		setTimeout(()=>{
+			this.context.router.push(routes.showcaseProjectTeamMember(this.props.params.id, this.props.teamMember.indexId))
+		}, 500);
+	}
+
+
 	componentWillUnmount(){
 		socket.removeListener(events.selectTeamMemberClient, this.selectMember.bind(this))
 	}
 
 	render() {
-		return <div className="c-showcase-team">
+		return <div className={"c-showcase-team" + ( this.props.teamMember ? ' no-page-transition' : '')}>
 			<div className="o-section o-section--spaced-top">
 				<h1>TEAM</h1>
 			</div>
 			<div className="o-layout-four-cols">
 				{this.props.currentProject ? this.renderMembers() : <div></div>}
 			</div>
+
+			<ReactCSSTransitionGroup
+				transitionName="o-ps-translate-fade"
+				transitionLeave={true}
+				transitionEnterTimeout={500}
+				transitionLeaveTimeout={500}>
+
+				{this.props.children ? React.cloneElement(this.props.children, {
+					key: this.props.params.location
+				}) : null}
+			</ReactCSSTransitionGroup>
 		</div>
 	}
 
 	selectMember({activeMember}){
-		console.log(activeMember);
-		this.props.selectTeamMember(activeMember);
+		if(activeMember === null) return this.props.unselectTeamMember();
+
+		let _index = null;
+		const selectedTeamMember = this.props.currentProject.team.teamMembers.filter((teamMember, index)=>{
+			if(activeMember === index){
+				_index = index;
+				return true;
+			}
+		})[0];
+
+		selectedTeamMember.indexId = _index;
+		this.props.selectTeamMember(selectedTeamMember);
 	}
 
 	renderMembers() {
 		return this.props.currentProject.team.teamMembers.map((teamMember, index) =>{
 			return <article
-					className={"c-card c-card--with-single-image o-scalable" + (this.props.teamMember === index ? ' is-active' : '')}
+					className={"c-card c-card--with-single-image o-scalable" + (this.props.teamMember !== null && this.props.teamMember.id.value === teamMember.id.value ? ' is-active' : '')}
 					key={index}>
 				<header>
 					<img src={teamMember.picture.large} className="c-image c-image--rounded c-card__single-image" alt=""/>
@@ -64,4 +101,4 @@ function mapStateToProps({projects, teamMember}){
 	}
 }
 
-export default connect(mapStateToProps, { selectTeamMember })(ShowcaseTeam);
+export default connect(mapStateToProps, { selectTeamMember, unselectTeamMember })(ShowcaseTeam);

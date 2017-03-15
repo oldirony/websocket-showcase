@@ -3,6 +3,16 @@
 	justify-content: space-between;
 }
 
+.o-layout-three-cols {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+
+	> * {
+		flex: 0 0 calc(33% - 1rem);
+	}
+}
+
 .o-layout-four-cols {
 	display: flex;
 	justify-content: space-around;

@@ -113,7 +113,6 @@ class ShowcaseProject extends Component {
 				<ReactCSSTransitionGroup
 					transitionName="o-ps-translate-fade"
 					transitionLeave={true}
-					transitionAppear={false}
 					transitionEnterTimeout={500}
 					transitionLeaveTimeout={500}>
 

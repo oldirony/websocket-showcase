@@ -17,7 +17,7 @@ class ControllerNavigation extends Component {
 				<img className="c-controller-navigation__logo" src="/assets/fp-logo.svg" alt=""/>
 				Foolproof
 			</header>
-			<div className="o-layout-two-cols">
+			<div className="o-layout-three-cols">
 				{projectsList}
 			</div>
 
