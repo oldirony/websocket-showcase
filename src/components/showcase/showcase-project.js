@@ -93,7 +93,7 @@ class ShowcaseProject extends Component {
 	renderChild(){
 		if(this.props.children){
 			return React.cloneElement(this.props.children, {
-				key: location.pathname
+				key: 'show-can'
 			})
 		} else {
 			return this.renderContent();

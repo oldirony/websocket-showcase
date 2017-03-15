@@ -27,10 +27,11 @@ class ShowcaseTeam extends Component {
 	}
 
 	componentDidUpdate(){
-		if(!this.props.teamMember) return;
-
 		setTimeout(()=>{
-			this.context.router.push(routes.showcaseProjectTeamMember(this.props.params.id, this.props.teamMember.indexId))
+			if(!this.props.teamMember) return;
+
+			// TODO check if the url is already correct
+			this.context.router.push(routes.showcaseProjectTeamMember(this.props.params.id, this.props.teamMember.indexId));
 		}, 500);
 	}
 
@@ -48,16 +49,7 @@ class ShowcaseTeam extends Component {
 				{this.props.currentProject ? this.renderMembers() : <div></div>}
 			</div>
 
-			<ReactCSSTransitionGroup
-				transitionName="o-ps-translate-fade"
-				transitionLeave={true}
-				transitionEnterTimeout={500}
-				transitionLeaveTimeout={500}>
-
-				{this.props.children ? React.cloneElement(this.props.children, {
-					key: this.props.params.location
-				}) : null}
-			</ReactCSSTransitionGroup>
+			{this.props.children}
 		</div>
 	}
 

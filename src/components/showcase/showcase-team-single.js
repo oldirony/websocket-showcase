@@ -10,11 +10,11 @@ class ShowcaseTeamSingle extends Component {
 	};
 
 	componentWillMount(){
-		if(!this.props.teamMember) return this.context.router.push(routes.showcaseProjectTeam(this.props.params.id));
+		if(!this.props.teamMember) return this.goToTeamView();
 	}
 
 	componentDidUpdate(){
-		if(!this.props.teamMember) return this.context.router.push(routes.showcaseProjectTeam(this.props.params.id));
+		if(!this.props.teamMember) return this.goToTeamView();
 	}
 
 	render() {
@@ -35,6 +35,10 @@ class ShowcaseTeamSingle extends Component {
 				</article>
 			</div>
 		)
+	}
+
+	goToTeamView(){
+		this.context.router.push(routes.showcaseProjectTeam(this.props.params.id));
 	}
 }
 
