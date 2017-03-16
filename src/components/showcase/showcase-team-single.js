@@ -21,7 +21,7 @@ class ShowcaseTeamSingle extends Component {
 		if(!this.props.teamMember) return <div></div>;
 
 		return (
-			<div className="o-fullscreen o-section">
+			<div className="o-fullscreen o-section c-animation-fade-in">
 				<article className="o-layout-one-half">
 					<div>
 						<img src={this.props.teamMember.picture.large} className="c-image c-image--rounded" alt=""/>
