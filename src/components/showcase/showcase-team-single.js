@@ -21,19 +21,17 @@ class ShowcaseTeamSingle extends Component {
 		if(!this.props.teamMember) return <div></div>;
 
 		return (
-			<div className="o-fullscreen o-section c-animation-fade-in">
-				<article className="o-layout-one-half">
-					<div>
+			<article className="o-fullscreen o-section c-animation-fade-in o-layout-one-half">
+					<div className="u-vertically-centered">
 						<img src={this.props.teamMember.picture.large} className="c-image c-image--rounded" alt=""/>
 						<h1>{this.props.teamMember.name.first} {this.props.teamMember.name.last}</h1>
 					</div>
-					<div>
+					<div className="u-vertically-centered">
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet beatae cum eius eveniet harum incidunt nihil optio! Aliquam aliquid dicta impedit iusto nam quo ratione reprehenderit sint, temporibus veniam voluptatem?</p>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet beatae cum eius eveniet harum incidunt nihil optio! Aliquam aliquid dicta impedit iusto nam quo ratione reprehenderit sint, temporibus veniam voluptatem?</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet beatae cum eius eveniet harum incidunt nihil optio! Aliquam aliquid dicta impedit iusto nam quo ratione reprehenderit sint, temporibus veniam voluptatem?</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet beatae cum eius eveniet harum incidunt nihil optio! Aliquam aliquid dicta impedit iusto nam quo ratione reprehenderit sint, temporibus veniam voluptatem? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet beatae cum eius eveniet harum incidunt nihil optio! Aliquam aliquid dicta impedit iusto nam quo ratione reprehenderit sint, temporibus veniam voluptatem?</p>
 					</div>
-				</article>
-			</div>
+			</article>
 		)
 	}
 
