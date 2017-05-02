@@ -79,11 +79,10 @@ class ShowcaseProject extends Component {
 		if(!this.props.currentProject) return;
 
 		return <div key="base">
-			<div className={'c-showcase-project__content o-section--full-height' + (!this.state.selectedSection ? ' is-active' : '')}>
-				<div className="c-showcase-project__description">{this.props.currentProject.description}</div>
-				<div className="c-showcase-project__cover">
-					<img src={this.props.currentProject.coverImg} alt={this.props.currentProject.title}/>
-				</div>
+			<div className={'c-showcase-project__content c-showcase-project__content--first o-section--full-height' + (!this.state.selectedSection ? ' is-active' : '')}>
+				<p className="c-showcase-project__intro">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur corporis debitis dolores eos hic, impedit labore laborum maiores numquam officia veritatis voluptatem voluptatibus! Commodi et quis tempore veritatis. Eligendi, quasi.
+				</p>
 			</div>
 
 			{this.renderExtraSections()};

@@ -22,7 +22,13 @@
 		padding: 1rem 1rem 0rem;
 		margin-top: 0;
 		margin-bottom: 0;
-		font-size: 1.2rem;
+		font-size: 1.1rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+
+		&--center {
+			text-align: center;
+		}
 	}
 
 
