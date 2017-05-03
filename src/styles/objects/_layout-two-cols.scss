@@ -23,11 +23,7 @@
 	}
 }
 .o-layout-six-cols {
-	display: flex;
-	justify-content: space-around;
-	flex-wrap: wrap;
-
-	> * {
-		flex: 0 0 calc(16% - 1rem);
-	}
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+	grid-column-gap: 1rem;
 }

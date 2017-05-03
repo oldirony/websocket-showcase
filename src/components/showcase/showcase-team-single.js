@@ -22,7 +22,7 @@ class ShowcaseTeamSingle extends Component {
 
 		return (
 			<article className="o-fullscreen o-section c-animation-fade-in o-layout-one-half">
-					<div className="u-vertically-centered">
+					<div className="u-vertically-centered o-layout-two-cols">
 						<img src={this.props.teamMember.picture.large} className="c-image c-image--rounded" alt=""/>
 						<h1>{this.props.teamMember.name.first} {this.props.teamMember.name.last}</h1>
 					</div>
