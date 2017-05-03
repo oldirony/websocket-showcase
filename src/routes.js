@@ -8,6 +8,9 @@ import ShowcaseTeamSingle from './components/showcase/showcase-team-single';
 import ControllerIndex from './components/controller/controller-index';
 import ControllerProject from './components/controller/controller-project';
 import ControllerTeam from './components/controller/controller-team';
+import InsertCode from './components/insert-code';
+import GetCode from './components/show-code';
+
 
 class Routes {
 	constructor(){
@@ -19,6 +22,8 @@ class Routes {
 		this.controller  =  '/controller';
 		this.controllerProject  =  `${this.controller}/project`;
 		this.controllerProjectTeam  =  `${this.controllerProject}/team`;
+		this.insertCode = 'welcome';
+		this.getCode = 'get-code';
 	}
 }
 
@@ -26,6 +31,10 @@ export const routes = new Routes();
 
 export default (
 	<Route path={routes.root} component={Layout}>
+		<IndexRoute component={GetCode}/>
+		<Route path={routes.insertCode} component={InsertCode}/>
+		<Route path={routes.getCode} component={GetCode}/>
+
 		<Route path={routes.showcase} component={ShowcaseIndex}>
 			<Route path={routes.showcaseProject()} component={ShowcaseProject}>
 				<Route path={routes.showcaseProjectTeam()} component={ShowcaseTeam} >

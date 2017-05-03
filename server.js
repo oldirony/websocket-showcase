@@ -8,14 +8,22 @@ const events = require('./src/lib/events');
 
 const root = __dirname;
 app.use(express.static(root));
-app.use(fallback('index.html', { root }));
 app.use('/dist', express.static(__dirname + '/dist'));
-app.get('/', function(req, res,next) {
-	res.sendFile(__dirname + '/index.html', { root });
+
+app.get('*', function(req, res,next) {
+	res.sendFile('/index.html', { root });
 });
 
 io.on(events.connection, function(client) {
 	console.log('Client connected...');
+
+	client.on('get-code', function(data) {
+		client.broadcast.emit('code-used', data);
+	});
+
+	client.on('code-worked', function(data) {
+		client.broadcast.emit('code-worked', data);
+	});
 
 	client.on(events.join, function(data) {
 		console.log('Someone joined');
